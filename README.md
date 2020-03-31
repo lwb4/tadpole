@@ -44,7 +44,7 @@ To build for Apple platforms, you need to download the latest version of Xcode.
 
 To build for Mac OS, you need to download the development libraries for [SDL2](https://libsdl.org/download-2.0.php), [SDL2_ttf](https://www.libsdl.org/projects/SDL_ttf/), [SDL2_image](https://www.libsdl.org/projects/SDL_image/), and [SDL2_mixer](https://www.libsdl.org/projects/SDL_mixer/). You also have to `brew install openssl` if you don't have it already. These would be ideal candidates for static linking, so you don't have to download the libraries separately.
 
-To build for Linux, you have to install several development libraries from your distribution's package manager. On Ubuntu, you can simply `apt-install xorg-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev openssl`. I also provide a Code::Blocks project file out of the box, although this could probably be replaced
+To build for Linux, you have to install several development libraries from your distribution's package manager. On Ubuntu, you can simply `apt-install xorg-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libssl-dev`. I also provide a Code::Blocks project file out of the box, although this could probably be replaced
 
 To build for Windows, you have to install MinGW and Code::Blocks. Again, Code::Blocks could probably be replaced with plain old Make files, or possibly CMake, but this is just how I have set it up so far. I have checked the runtime libraries into source control, for better or for worse, so you can find those DLLs deeply nested somewhere in the `xplat/windows` directory tree. Lastly, you have to manually build libwebsockets following the instructions at `deps/windows-libwebsockets/BUILD.md`.
 
