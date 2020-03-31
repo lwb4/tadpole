@@ -2,7 +2,7 @@
 
 Tadpole Engine is a minimal cross-platform game development framework for making 2D networked games in Lua. It can be used to create multiplayer games on Windows, Mac OS, Linux, iPhone, iPad, Android, and the browser with the same code. The framework comes with batteries included, including project skeletons for each platform as well as scripts to cross-build dependencies from source.
 
-My vision is that anyone will be able to create games extremely easily and instantly deploy them everywhere. I have had a great deal of pain with Unity, React Native, Godot, and other frameworks with simple things like deployments and cross-building, and have created Tadpole to close this gap. I hope to eventually build some additional infrastructure (either CI/CD, some kind of publishing platform, hosted multiplayer services, or similar) to support this vision, in addition to this open source project.
+My vision is that anyone will be able to create games extremely easily and instantly deploy them everywhere. I have had a great deal of pain with Unity, React Native, Godot, and other frameworks to do simple things like deployments and cross-building, and have created Tadpole to close this gap. I hope to eventually build some additional infrastructure (either CI/CD, some kind of publishing platform, hosted multiplayer services, or similar) to support this vision, in addition to this open source project.
 
 The website for this project where you can find updates and blog posts is at https://tadpoleengine.github.io/.
 
@@ -43,7 +43,7 @@ To build for Mac OS, you need to download the development libraries for [SDL2](h
 
 To build for Linux, you have to install several development libraries from your distribution's package manager. On Ubuntu, you can simply `apt-install xorg-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev openssl`. I also provide a Code::Blocks project file out of the box, although this could probably be replaced
 
-To build for Windows, you have to install MinGW and Code::Blocks. Again, Code::Blocks could probably be replaced with plain old Make files, or possibly CMake, but this is just how I have set it up so far.
+To build for Windows, you have to install MinGW and Code::Blocks. Again, Code::Blocks could probably be replaced with plain old Make files, or possibly CMake, but this is just how I have set it up so far. I have checked the runtime libraries into source control, for better or for worse, so you can find those DLLs deeply nested somewhere in the `xplat/windows` directory tree.
 
 ## Documentation
 
