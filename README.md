@@ -15,23 +15,26 @@ I welcome any and all contributors who are interested in making my vision into a
 3. Use the provided `toolchain.sh` script to build for Mac, iOS, Android, and Emscripten
 4. Open up the generated project files, found under the `xplat` directory
 
+Tadpole Engine itself is fairly lean but has to pull in a huge number of dependencies to be able to compile on so many different architectures. As of this writing it is 2GB and counting all together. I don't plan to add any more dependencies but I make no guarantees. If you prefer, you can clone this repository regularly (not recursive) and then manually pull the submodules that you need. Proceed down that path at your own risk.
+
 There is already a sample game in the assets directory that you can modify for your needs, or throw out entirely and build your own. The only requirement is that the assets folder contains only the folders `fonts`, `images`, `scripts`, and `sounds`, and that the `scripts` file contains a `main.lua` file which will be the entrypoint for your game. Inside of those folders you can create pretty much whatever you want. The `assets` folder is the working directory for your program, so you would load images with the path `images/character.png` or whatever.
 
 See the Documentation section below for a list of functions that the framework supports and what they do.
 
 My primary computer is a Macbook Pro, so builds for that platform are most actively supported, but I am open to pull requests that add tooling support and cross-compilation for Windows and Linux.
 
-On any computer, you can build: browser
-
-On a Mac, you can build: macOS, iOS, android
-
-On a Windows PC, you can build: windows
-
-On a Linux PC, you can build: linux
+* On any computer, you can build: browser
+* On a Mac, you can build: macOS, iOS, android
+* On a Windows PC, you can build: windows
+* On a Linux PC, you can build: linux
 
 ## Dependencies
 
 Some dependencies are provided as source code in submodules to this project, but there are a few packages that you have to download and manage yourself.
+
+To make libwebsockets work everywhere, I had to fork it twice -- once for iOS and once for Windows. I provide extremely slim patches on top of libwebsockets to make it build out of the box. Normally you have to comment out a few things, change a few lines of code here and there, but my forks should take care of that.
+
+I also maintain unofficial Github mirrors of the MinGW development binaries for SDL2, SDL2_ttf, SDL2_mixer, and SDL2_image.
 
 Ideally, almost everything would be compiled from source and statically linked for each platform, but I'm not there yet. That is another area I would accept pull requests in.
 
@@ -43,7 +46,9 @@ To build for Mac OS, you need to download the development libraries for [SDL2](h
 
 To build for Linux, you have to install several development libraries from your distribution's package manager. On Ubuntu, you can simply `apt-install xorg-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev openssl`. I also provide a Code::Blocks project file out of the box, although this could probably be replaced
 
-To build for Windows, you have to install MinGW and Code::Blocks. Again, Code::Blocks could probably be replaced with plain old Make files, or possibly CMake, but this is just how I have set it up so far. I have checked the runtime libraries into source control, for better or for worse, so you can find those DLLs deeply nested somewhere in the `xplat/windows` directory tree.
+To build for Windows, you have to install MinGW and Code::Blocks. Again, Code::Blocks could probably be replaced with plain old Make files, or possibly CMake, but this is just how I have set it up so far. I have checked the runtime libraries into source control, for better or for worse, so you can find those DLLs deeply nested somewhere in the `xplat/windows` directory tree. Lastly, you have to manually build libwebsockets following the instructions at `deps/windows-libwebsockets/BUILD.md`.
+
+Most of this installation pain is stuff that can and should be automated away. I have very little experience developing for Windows, so that process is the most laborious and manual. 
 
 ## Documentation
 
