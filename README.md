@@ -32,9 +32,7 @@ My primary computer is a Macbook Pro, so builds for that platform are most activ
 
 Some dependencies are provided as source code in submodules to this project, but there are a few packages that you have to download and manage yourself.
 
-To make libwebsockets work everywhere, I had to fork it twice -- once for iOS and once for Windows. I provide extremely slim patches on top of libwebsockets to make it build out of the box. Normally you have to comment out a few things, change a few lines of code here and there, but my forks should take care of that.
-
-I also maintain unofficial Github mirrors of the MinGW development binaries for SDL2, SDL2_ttf, SDL2_mixer, and SDL2_image.
+I maintain a fork of liwebsockets that includes a lean patch to make it work on iOS. I also maintain unofficial Github mirrors of the MinGW development binaries for SDL2, SDL2_ttf, SDL2_mixer, and SDL2_image. 
 
 Ideally, almost everything would be compiled from source and statically linked for each platform, but I'm not there yet. That is another area I would accept pull requests in.
 
