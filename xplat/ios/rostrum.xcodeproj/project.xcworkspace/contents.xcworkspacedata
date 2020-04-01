@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:/Users/lincolnbergeson/Workspace/rostrum/xplat/ios/gamelib.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/lincolnbergeson/Workspace/rostrum/xplat/ios/gamelib.h">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/lincolnbergeson/Workspace/rostrum/xplat/ios/global.h">
+   </FileRef>
+   <FileRef
+      location = "self:">
+   </FileRef>
+</Workspace>

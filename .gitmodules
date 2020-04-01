@@ -1,0 +1,30 @@
+[submodule "deps/libwebsockets-ios"]
+	path = deps/libwebsockets-ios
+	url = git@github.com:lwb4/libwebsockets-ios.git
+[submodule "deps/libwebsockets"]
+	path = deps/libwebsockets
+	url = https://github.com/warmcat/libwebsockets.git
+[submodule "deps/emsdk"]
+	path = deps/emsdk
+	url = https://github.com/emscripten-core/emsdk.git
+[submodule "deps/SDL"]
+	path = deps/SDL
+	url = https://github.com/SDL-mirror/SDL.git
+[submodule "deps/SDL_image"]
+	path = deps/SDL_image
+	url = https://github.com/SDL-mirror/SDL_image.git
+[submodule "deps/SDL_ttf"]
+	path = deps/SDL_ttf
+	url = https://github.com/SDL-mirror/SDL_ttf.git
+[submodule "deps/SDL_mixer"]
+	path = deps/SDL_mixer
+	url = https://github.com/SDL-mirror/SDL_mixer
+[submodule "deps/lua"]
+	path = deps/lua
+	url = https://github.com/lua/lua.git
+[submodule "deps/ios-cmake"]
+	path = deps/ios-cmake
+	url = https://github.com/leetal/ios-cmake.git
+[submodule "deps/mbedtls"]
+	path = deps/mbedtls
+	url = https://github.com/ARMmbed/mbedtls.git
