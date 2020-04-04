@@ -12,12 +12,13 @@ I welcome any and all contributors who are interested in making my vision into a
 
 1. Clone this repo recursively (has to be recursive to get all the git submodules)
 2. Create your game and put it in the `assets` directory
-3. Use the provided `toolchain.sh` script to build for Mac, iOS, Android, and Emscripten
+3. Use the provided `make.sh` script to build for Mac, iOS, Android, and Emscripten
+3a. On Windows, you need to mount this repository to the Y: drive and run `make.bat` from the root folder of that drive.
 4. Open up the generated project files, found under the `xplat` directory
 
-Tadpole Engine itself is fairly lean but has to pull in a huge number of dependencies to be able to compile on so many different architectures. As of this writing it is 2GB and counting all together. I don't plan to add any more dependencies but I make no guarantees. If you prefer, you can clone this repository regularly (not recursive) and then manually pull the submodules that you need. Proceed down that path at your own risk.
+Tadpole Engine itself is fairly lean but has to pull in a few dependencies to be able to compile on so many different architectures. The size may or may not be a problem, depending on the speed of your network connection. I don't plan to add any more dependencies but I make no guarantees. If you prefer, you can clone this repository regularly (not recursive) and then manually pull the submodules that you need. Proceed down that path at your own risk.
 
-There is already a sample game in the assets directory that you can modify for your needs, or throw out entirely and build your own. The only requirement is that the assets folder contains only the folders `fonts`, `images`, `scripts`, and `sounds`, and that the `scripts` file contains a `main.lua` file which will be the entrypoint for your game. Inside of those folders you can create pretty much whatever you want. The `assets` folder is the working directory for your program, so you would load images with the path `images/character.png` or whatever.
+There is already a sample game in the assets directory that you can modify for your needs, or throw out entirely and build your own. The only requirement is that the assets folder contains only the folders `fonts`, `images`, `scripts`, and `sounds`, and that the `scripts` file contains a `main.lua` file which will be the entrypoint for your game. Inside of those folders you can create pretty much whatever you want. The `assets` folder is the working directory for your program, so you would load images with the path `images/character.png`, et cetera.
 
 See the Documentation section below for a list of functions that the framework supports and what they do.
 
@@ -28,25 +29,20 @@ My primary computer is a Macbook Pro, so builds for that platform are most activ
 * On a Windows PC, you can build: windows
 * On a Linux PC, you can build: linux
 
+There's no reason that Windows and Linux can't build for Android yet; I just use a bash script to compile their dependencies, and haven't ported that to CMake yet.
+
 ## Dependencies
 
-Some dependencies are provided as source code in submodules to this project, but there are a few packages that you have to download and manage yourself.
+All project-level dependencies are provided as git submodules and compiled from source on each platform. Dependencies are compiled into static libraries and included in each platforms' respective project files, so you shouldn't need to download any development libraries or anything.
 
-I maintain a fork of liwebsockets that includes a lean patch to make it work on iOS. I also maintain unofficial Github mirrors of the MinGW development binaries for SDL2, SDL2_ttf, SDL2_mixer, and SDL2_image. 
+Other than that, you need the following pieces of software:
 
-Ideally, almost everything would be compiled from source and statically linked for each platform, but I'm not there yet. That is another area I would accept pull requests in.
+* Mac/iOS: XCode, and brew install cmake
+* Windows: Visual Studio (I built the project with community edition 2019, but anything should work)
+* Linux: Nothing, unless your distro doesn't come with basic development tools like make and gcc
+* Android: Android Studio, then go to SDK Manager -> install Android NDK and CMake
 
-To build for Android, you need to download Android Studio and install the SDK, the NDK, and CMake.
-
-To build for Apple platforms, you need to download the latest version of Xcode.
-
-To build for Mac OS, you need to download the development libraries for [SDL2](https://libsdl.org/download-2.0.php), [SDL2_ttf](https://www.libsdl.org/projects/SDL_ttf/), [SDL2_image](https://www.libsdl.org/projects/SDL_image/), and [SDL2_mixer](https://www.libsdl.org/projects/SDL_mixer/). You also have to `brew install openssl` if you don't have it already. These would be ideal candidates for static linking, so you don't have to download the libraries separately.
-
-To build for Linux, you have to install several development libraries from your distribution's package manager. On Ubuntu, you can simply `apt-install xorg-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libssl-dev`. I also provide a Code::Blocks project file out of the box, although this could probably be replaced
-
-To build for Windows, you have to install MinGW and Code::Blocks. Again, Code::Blocks could probably be replaced with plain old Make files, or possibly CMake, but this is just how I have set it up so far. I have checked the runtime libraries into source control, for better or for worse, so you can find those DLLs deeply nested somewhere in the `xplat/windows` directory tree. Lastly, you have to manually build libwebsockets following the instructions at `deps/windows-libwebsockets/BUILD.md`.
-
-Most of this installation pain is stuff that can and should be automated away. I have very little experience developing for Windows, so that process is the most laborious and manual. 
+Certain flavors of Linux may need additional packages; for example, on Ubuntu I had to install `xorg-dev` to get rid of the "no video driver available" error from SDL.
 
 ## Documentation
 

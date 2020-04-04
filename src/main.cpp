@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <unistd.h>
-#include <strings.h>
 #include <vector>
 
 #include "global.h"

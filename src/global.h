@@ -14,14 +14,13 @@
 #include <emscripten.h>
 #endif
 
-#ifdef BUILD_TARGET_WINDOWS
-#include "../../deps/lua/src/lua.hpp"
-#include "../../deps/lua/src/lauxlib.h"
-#include "../../deps/lua/src/lualib.h"
-#else
 #include "lua.hpp"
 #include "lauxlib.h"
 #include "lualib.h"
+
+#ifndef BUILD_TARGET_WINDOWS
+#include <unistd.h>
+#include <strings.h>
 #endif
 
 struct gamelib_texture {
