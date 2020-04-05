@@ -1,4 +1,4 @@
-SET root=%cd%
+SET root=%cd:\=/%
 
 :: mbedtls
 msbuild /p:Platform="x64";RuntimeLibrary="MultiThreaded" deps/mbedtls/visualc/VS2010/mbedTLS.vcxproj
