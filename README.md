@@ -13,8 +13,16 @@ I welcome any and all contributors who are interested in making my vision into a
 1. Clone this repo recursively (has to be recursive to get all the git submodules)
 2. Create your game and put it in the `assets` directory
 3. Use the provided `make.sh` script to build for Mac, iOS, Android, and Emscripten
-3a. On Windows, you need to mount this repository to the Y: drive and run `make.bat` from the root folder of that drive.
 4. Open up the generated project files, found under the `xplat` directory
+
+On Windows, the instructions are a little more complicated.
+
+1. Mount this repository to the Y: drive. This is necessary because I don't know how include projects in a solution via a relative path. If you know how to do this, please submit a merge request!
+2. Open a Visual Studio Developer Command Prompt, cd to the Y: drive, and run make.bat. This generates the Visual Studio project files for libwebsockets. (You may have to do step 4 first if the command prompt asks you to install Visual Studio 2010 build tools.)
+3. If you're using a version of Visual Studio later than 2010, you may have to right click the solution and select "retarget solution".
+4. Now you can open xplat/windows/windows.sln and it should build.
+
+If you get unexpected linker errors, make sure each project in the solution is set to x64 configuration and "/MT" for the runtime library.
 
 Tadpole Engine itself is fairly lean but has to pull in a few dependencies to be able to compile on so many different architectures. The size may or may not be a problem, depending on the speed of your network connection. I don't plan to add any more dependencies but I make no guarantees. If you prefer, you can clone this repository regularly (not recursive) and then manually pull the submodules that you need. Proceed down that path at your own risk.
 

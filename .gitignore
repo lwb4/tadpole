@@ -11,6 +11,9 @@
 *.dylib
 .DS_Store
 
+# In the repo, but not accepting changes
+build/lws-windows
+
 ##############
 # EMSCRIPTEN #
 ##############
@@ -24,6 +27,10 @@ xplat/web/dist
 System Volume Information
 .vs
 Debug
+xplat/windows/fonts
+xplat/windows/images
+xplat/windows/sounds
+xplat/windows/scripts
 
 ################
 # CODE::BLOCKS #
@@ -66,6 +73,7 @@ out/
 
 # Gradle files
 .gradle/
+xplat/android/app/build
 
 # Local configuration file (sdk path, etc)
 local.properties

@@ -21,7 +21,7 @@ void register_lib_function(const char *name, lua_CFunction func) {
 }
 
 SDL_Color string_to_color(const char *color) {
-    if (strcasecmp(color, "black")) {
+    if (strcmp(color, "black")) {
         return { 0, 0, 0, 255 };
     } else {
         return { 255, 255, 255, 255 };

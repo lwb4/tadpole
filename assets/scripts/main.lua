@@ -1,7 +1,7 @@
 x = 0
 y = 0
 speed = 5
-greenface = lib.load_image("img/greenface.png")
+greenface = lib.load_image("images/greenface.png")
 font = lib.load_font("fonts/free-sans.ttf", 20)
 
 platform_text = "you are on " .. lib.get_platform()

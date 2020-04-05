@@ -72,6 +72,10 @@ void start_network_enabled_game_loop(void (*f)(), int target_fps) {
 
 #else
 
+#ifdef BUILD_TARGET_WINDOWS
+#include <iostream>
+#endif
+
 extern "C" {
 #include <libwebsockets.h>
 }
@@ -83,13 +87,9 @@ extern "C" {
 
 lws_sorted_usec_list_t  SUL;
 
-static struct lws_context *CONTEXT;
-static int SERVER_PORT = 8181;
-#ifdef BUILD_TARGET_ANDROID
-static const char *SERVER_ADDRESS = "10.0.2.2";
-#else
-static const char *SERVER_ADDRESS = "localhost";
-#endif
+static struct lws_context *LWS_CONTEXT;
+static int SERVER_PORT = 8080;
+static const char *SERVER_ADDRESS = "pollywog.games";
 static const char *SERVER_PATH = "/";
 
 static int service_callback(struct lws *wsi, enum lws_callback_reasons reason, void *user, void *in, size_t len);
@@ -115,12 +115,13 @@ static void connect_client(lws_sorted_usec_list_t *sul) {
 
     memset(&i, 0, sizeof(i));
 
-    i.context = CONTEXT;
+    i.context = LWS_CONTEXT;
     i.port = SERVER_PORT;
     i.address = SERVER_ADDRESS;
     i.path = SERVER_PATH;
     i.host = i.address;
     i.origin = i.address;
+    i.ssl_connection = LCCSCF_USE_SSL;
 
     lws_client_connect_via_info(&i);
 }
@@ -133,11 +134,13 @@ void connect_socket(void (*f)()) {
 
     info.port = CONTEXT_PORT_NO_LISTEN; /* we do not run any server */
     info.protocols = PROTOCOLS;
+    info.options = LWS_SERVER_OPTION_DO_SSL_GLOBAL_INIT;
+    info.client_ssl_ca_filepath = "../pollywog.games.cer";
 
     info.fd_limit_per_thread = 1 + 1 + 1;
 
-    CONTEXT = lws_create_context(&info);
-    if (!CONTEXT) {
+    LWS_CONTEXT = lws_create_context(&info);
+    if (!LWS_CONTEXT) {
         fprintf(stderr, "lws init failed\n");
         return;
     }
@@ -156,7 +159,7 @@ static void one_frame(lws_sorted_usec_list_t *sul) {
 // helper function for scheduling the next frame
 void schedule_next_frame() {
     // TODO: calculate the frame rate in terms of target_fps
-    lws_sul_schedule(CONTEXT, 0, &SUL, one_frame, LWS_USEC_PER_SEC / 60);
+    lws_sul_schedule(LWS_CONTEXT, 0, &SUL, one_frame, LWS_USEC_PER_SEC / 60);
 }
 
 // we can't just use an infinite loop because lws_service can block
@@ -165,17 +168,17 @@ void schedule_next_frame() {
 void start_network_enabled_game_loop(void (*f)(), int target_fps) {
     FRAME_FUNCTION = f;
     IS_RUNNING = true;
-    lws_sul_schedule(CONTEXT, 0, &SUL, connect_client, 1);
+    lws_sul_schedule(LWS_CONTEXT, 0, &SUL, connect_client, 1);
 
     int n = 0;
     while (n >= 0 && IS_RUNNING) {
-        n = lws_service(CONTEXT, 0);
+        n = lws_service(LWS_CONTEXT, 0);
     }
 }
 
 void send_message_on_socket(SEND_MESSAGE_TYPE msg) {
     MESSAGE_LENGTH = lws_snprintf((char*) MESSAGE + LWS_PRE, sizeof(MESSAGE) - LWS_PRE, "%s", msg);
-    lws_callback_on_writable_all_protocol(CONTEXT, &PROTOCOLS[0]);
+    lws_callback_on_writable_all_protocol(LWS_CONTEXT, &PROTOCOLS[0]);
 }
 
 void set_message_listener(void (*f)(RECV_MESSAGE_TYPE)) {
@@ -183,11 +186,18 @@ void set_message_listener(void (*f)(RECV_MESSAGE_TYPE)) {
 }
 
 void close_socket() {
-    lws_context_destroy(CONTEXT);
+    lws_context_destroy(LWS_CONTEXT);
 }
 
 static int service_callback(struct lws *wsi, enum lws_callback_reasons reason, void *user, void *in, size_t len) {
     switch (reason) {
+
+    case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
+        IS_RUNNING = false;
+        if (in != NULL) {
+            printf("error: %s\n", in);
+        }
+        break;
 
     case LWS_CALLBACK_CLIENT_RECEIVE:
         if (MESSAGE_LISTENER) {
@@ -201,8 +211,8 @@ static int service_callback(struct lws *wsi, enum lws_callback_reasons reason, v
         break;
 
     case LWS_CALLBACK_CLIENT_CLOSED:
-        // TODO: some error handling here
-        printf("connection closed");
+        IS_RUNNING = false;
+        printf("connection closed\n");
         break;
 
     case LWS_CALLBACK_CLIENT_WRITEABLE:

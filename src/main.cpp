@@ -37,6 +37,7 @@ void on_network_request(RECV_MESSAGE_TYPE msg);
 
 bool IS_RUNNING;
 
+#undef main
 int main(int argc, char* args[]) {
 
 #ifdef BUILD_TARGET_ANDROID
@@ -163,7 +164,7 @@ void on_network_request(RECV_MESSAGE_TYPE msg) {
 }
 
 int start_lua_game() {
-    SDL_RWops *io = SDL_RWFromFile("scripts/sample.lua", "rb");
+    SDL_RWops *io = SDL_RWFromFile("scripts/main.lua", "rb");
     if (io == NULL) {
         fprintf(stderr, "could not load sample lua script");
         return 1;
