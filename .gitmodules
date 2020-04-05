@@ -13,16 +13,16 @@
 	url = https://github.com/leetal/ios-cmake.git
 [submodule "deps/mbedtls"]
 	path = deps/mbedtls
-	url = git@github.com:lwb4/mbedtls.git
+	url = https://github.com/lwb4/mbedtls.git
 [submodule "deps/SDL"]
 	path = deps/SDL
-	url = git@github.com:lwb4/SDL.git
+	url = https://github.com/lwb4/SDL.git
 [submodule "deps/SDL_ttf"]
 	path = deps/SDL_ttf
-	url = git@github.com:lwb4/SDL_ttf.git
+	url = https://github.com/lwb4/SDL_ttf.git
 [submodule "deps/SDL_mixer"]
 	path = deps/SDL_mixer
-	url = git@github.com:lwb4/SDL_mixer.git
+	url = https://github.com/lwb4/SDL_mixer.git
 [submodule "deps/SDL_image"]
 	path = deps/SDL_image
-	url = git@github.com:lwb4/SDL_image.git
+	url = https://github.com/lwb4/SDL_image.git
