@@ -1,0 +1,14 @@
+# AppVeyor CI Configuration
+
+version: 0.0.{build}
+
+image: Visual Studio 2019
+
+configuration:
+  - Debug
+  - Release
+platform:
+  - x64
+
+build_script:
+  - make.bat
