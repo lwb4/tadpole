@@ -1,5 +1,7 @@
 SET root=%cd:\=/%
 
+git submodule update --init --recursive
+
 :: mbedtls
 msbuild /p:Platform="x64";RuntimeLibrary="MultiThreaded" deps/mbedtls/visualc/VS2010/mbedTLS.vcxproj
 

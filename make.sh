@@ -2,9 +2,8 @@
 
 set -e
 
-PWD="$(pwd)"
-WINDOWS_MBEDTLS_SOURCE="$PWD/deps/mbedtls"
-WINDOWS_MBEDTLS_LIB="$PWD/build/windows/mbedtls"
+CURRDIR="$(pwd)"
+LINUX_INSTALL="$CURRDIR/build/all-linux"
 
 ######################
 # DEFINE SUBCOMMANDS #
@@ -34,7 +33,58 @@ printUsage() {
 }
 
 buildLinux() {
-    echo "linux"
+    echo "<=================== sdl"
+    cd "$CURRDIR/deps/SDL"
+    ./configure --prefix "$LINUX_INSTALL"
+    make clean
+    make
+    make install
+    cd "$CURRDIR"
+
+    echo "<=================== sdl_image"
+    cd "$CURRDIR/deps/SDL_image"
+    ./configure --prefix "$LINUX_INSTALL"
+    make clean
+    make
+    make install
+    cd "$CURRDIR"
+
+    echo "<=================== sdl_mixer"
+    cd "$CURRDIR/deps/SDL_mixer"
+    ./configure --prefix "$LINUX_INSTALL"
+    make clean
+    make
+    make install
+    cd "$CURRDIR"
+
+    echo "<=================== sdl_ttf"
+    cd "$CURRDIR/deps/SDL_ttf"
+    ./configure --prefix "$LINUX_INSTALL"
+    make clean
+    make
+    make install
+    cd "$CURRDIR"
+
+    echo "<=================== mbedtls"
+    cd "$CURRDIR/deps/mbedtls"
+    make clean
+    make no_test
+    make install DESTDIR="$LINUX_INSTALL"
+    cd "$CURRDIR"
+
+    echo "<=================== libwebsockets"
+    cd "$CURRDIR/build/all-linux"
+    cmake \
+        -DLWS_WITH_MBEDTLS=ON \
+        -DLWS_MBEDTLS_LIBRARIES="$LINUX_INSTALL/lib/libmbedtls.a;$LINUX_INSTALL/lib/libmbedcrypto.a;$LINUX_INSTALL/lib/libmbedx509.a" \
+        -DLWS_MBEDTLS_INCLUDE_DIRS="$LINUX_INSTALL/include" \
+        "$CURRDIR/deps/libwebsockets"
+    make
+    make install
+
+    echo ""
+    echo "now go into the xplat/linux directory and run ./build.sh to run your program!"
+    echo ""
 }
 
 buildMac() {
