@@ -22,8 +22,6 @@ printUsage() {
     echo "                  for example, on a Mac, this builds libraries for Mac"
     echo "    ios       -- cross-compile iOS libraries (only works on a Mac)"
     echo "    android   -- cross-compile Android libraries (works on all platforms)"
-    echo "    browser   -- use the Emscripten sdk to build a web assembly package"
-    echo "                  that you can run in most browsers"
     echo ""
     echo "this only builds libraries; to run your program, you still have to"
     echo "build each platform individually in their respective xplat folders"
@@ -47,13 +45,6 @@ buildLinux() {
 
     echo "<=================== sdl_mixer"
     cd "$CURRDIR/deps/SDL_mixer"
-    ./configure --prefix "$LINUX_INSTALL"
-    make
-    make install
-
-    echo "<=================== freetype"
-    cd "$CURRDIR/deps/SDL_ttf/external/freetype-2.10.1"
-    sh autogen.sh
     ./configure --prefix "$LINUX_INSTALL"
     make
     make install
@@ -104,10 +95,6 @@ buildiOS() {
     echo "building for iOS"
 }
 
-buildBrowser() {
-    echo "building for emscripten"
-}
-
 ########################
 # DETECT CALL LOCATION #
 ########################
@@ -147,7 +134,6 @@ case "$1" in
     native)     buildNative "$MACHINE";;
     android)    buildAndroid;;
     ios)        buildiOS;;
-    browser)    buildBrowser;;
     *)          printUsage;;
 esac
 
