@@ -31,6 +31,9 @@ printUsage() {
 }
 
 buildLinux() {
+    export CPPFLAGS="-I$LINUX_INSTALL/include -fPIC"
+    export LDFLAGS="-I$LINUX_INSTALL/lib"
+
     echo "<=================== sdl"
     cd "$CURRDIR/deps/SDL"
     ./configure --prefix "$LINUX_INSTALL"
@@ -39,6 +42,7 @@ buildLinux() {
 
     echo "<=================== sdl_image"
     cd "$CURRDIR/deps/SDL_image"
+    sh autogen.sh
     ./configure --prefix "$LINUX_INSTALL"
     make
     make install
