@@ -36,41 +36,38 @@ buildLinux() {
     echo "<=================== sdl"
     cd "$CURRDIR/deps/SDL"
     ./configure --prefix "$LINUX_INSTALL"
-    make clean
     make
     make install
-    cd "$CURRDIR"
 
     echo "<=================== sdl_image"
     cd "$CURRDIR/deps/SDL_image"
     ./configure --prefix "$LINUX_INSTALL"
-    make clean
     make
     make install
-    cd "$CURRDIR"
 
     echo "<=================== sdl_mixer"
     cd "$CURRDIR/deps/SDL_mixer"
     ./configure --prefix "$LINUX_INSTALL"
-    make clean
     make
     make install
-    cd "$CURRDIR"
+
+    echo "<=================== freetype"
+    cd "$CURRDIR/deps/SDL_ttf/external/freetype-2.10.1"
+    sh autogen.sh
+    ./configure --prefix "$LINUX_INSTALL"
+    make
+    make install
 
     echo "<=================== sdl_ttf"
     cd "$CURRDIR/deps/SDL_ttf"
     ./configure --prefix "$LINUX_INSTALL"
-    make clean
     make
     make install
-    cd "$CURRDIR"
 
     echo "<=================== mbedtls"
     cd "$CURRDIR/deps/mbedtls"
-    make clean
     make no_test
     make install DESTDIR="$LINUX_INSTALL"
-    cd "$CURRDIR"
 
     echo "<=================== libwebsockets"
     cd "$CURRDIR/build/all-linux"
@@ -153,3 +150,5 @@ case "$1" in
     browser)    buildBrowser;;
     *)          printUsage;;
 esac
+
+cd "$CURRDIR"
