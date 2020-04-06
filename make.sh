@@ -49,6 +49,7 @@ buildLinux() {
 
     echo "<=================== sdl_mixer"
     cd "$CURRDIR/deps/SDL_mixer"
+    sh autogen.sh
     ./configure --prefix "$LINUX_INSTALL"
     make
     make install
@@ -61,7 +62,7 @@ buildLinux() {
 
     echo "<=================== mbedtls"
     cd "$CURRDIR/deps/mbedtls"
-    make no_test
+    make no_test CC="cc -fPIC"
     make install DESTDIR="$LINUX_INSTALL"
 
     echo "<=================== libwebsockets"
