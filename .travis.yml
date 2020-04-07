@@ -4,14 +4,13 @@ dist: bionic
 
 jobs:
   include:
-
   - name: Emscripten
     install:
     - ./make.sh browser
     - source deps/emsdk/emsdk_env.sh
     script: cd xplat/web && ./build.sh noserver
 
-  - name: Ubuntu:
+  - name: Ubuntu
     install:
     - sudo apt-get update
     - sudo apt-get -y install xorg-dev libfreetype6-dev libvorbis-dev libogg-dev libasound2-dev libpulse-dev cmake
