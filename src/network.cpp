@@ -138,7 +138,15 @@ void connect_socket(void (*f)()) {
     info.port = CONTEXT_PORT_NO_LISTEN; /* we do not run any server */
     info.protocols = PROTOCOLS;
     info.options = LWS_SERVER_OPTION_DO_SSL_GLOBAL_INIT;
+    
+#ifdef BUILD_TARGET_MACOS
+    // this is a terrible hack, but at least it's temporary
+    // eventually ca cert location should be either platform specific and include everything
+    // or defined in lua code
+    info.client_ssl_ca_filepath = "pollywog.games.cer";
+#else
     info.client_ssl_ca_filepath = "../pollywog.games.cer";
+#endif
 
     info.fd_limit_per_thread = 1 + 1 + 1;
 

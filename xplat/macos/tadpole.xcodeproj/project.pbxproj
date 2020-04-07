@@ -1,0 +1,848 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C015A27B243CCF35007E6323 /* onelua.c in Sources */ = {isa = PBXBuildFile; fileRef = C015A27A243CCF35007E6323 /* onelua.c */; };
+		C015A27D243CD07E007E6323 /* pollywog.games.cer in CopyFiles */ = {isa = PBXBuildFile; fileRef = C015A27C243CD07E007E6323 /* pollywog.games.cer */; };
+		C096FD982432EF460090BAD2 /* sounds in CopyFiles */ = {isa = PBXBuildFile; fileRef = C096FD942432EF460090BAD2 /* sounds */; };
+		C096FD992432EF460090BAD2 /* scripts in CopyFiles */ = {isa = PBXBuildFile; fileRef = C096FD952432EF460090BAD2 /* scripts */; };
+		C096FD9B2432EF460090BAD2 /* fonts in CopyFiles */ = {isa = PBXBuildFile; fileRef = C096FD972432EF460090BAD2 /* fonts */; };
+		C0E6684A243C494D0035C747 /* images in CopyFiles */ = {isa = PBXBuildFile; fileRef = C0E66849243C49470035C747 /* images */; };
+		C0E6684C243C4B430035C747 /* libwebsockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E6684B243C4B430035C747 /* libwebsockets.a */; };
+		C0E668D2243C4FDB0035C747 /* network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0E668CE243C4FDB0035C747 /* network.cpp */; };
+		C0E668D3243C4FDB0035C747 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0E668D0243C4FDB0035C747 /* main.cpp */; };
+		C0E668D4243C4FDB0035C747 /* gamelib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0E668D1243C4FDB0035C747 /* gamelib.cpp */; };
+		C0E668D6243C508A0035C747 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E668D5243C508A0035C747 /* CoreFoundation.framework */; };
+		C0E668D8243C50990035C747 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E668D7243C50990035C747 /* CoreGraphics.framework */; };
+		C0E668DB243C510E0035C747 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E66838243C48C60035C747 /* SDL2_ttf.framework */; };
+		C0E668DC243C51180035C747 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E667D8243C48820035C747 /* SDL2.framework */; };
+		C0E668DD243C511E0035C747 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E66804243C48960035C747 /* SDL2_image.framework */; };
+		C0E668DE243C51230035C747 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E66810243C48A80035C747 /* SDL2_mixer.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C0E667D7243C48820035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667C7243C48820035C747 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BECDF66C0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		C0E667D9243C48820035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667C7243C48820035C747 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7D88B5423E2437C00DCD162;
+			remoteInfo = "Framework-iOS";
+		};
+		C0E667DB243C48820035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667C7243C48820035C747 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7D88D1523E24BED00DCD162;
+			remoteInfo = "Framework-tvOS";
+		};
+		C0E667DD243C48820035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667C7243C48820035C747 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BECDF6B30761BA81005FE872;
+			remoteInfo = "Static Library";
+		};
+		C0E667DF243C48820035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667C7243C48820035C747 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7D88E5423E24D3B00DCD162;
+			remoteInfo = "Static Library-iOS";
+		};
+		C0E667E1243C48820035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667C7243C48820035C747 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A769B23D23E259AE00872273;
+			remoteInfo = "Static Library-tvOS";
+		};
+		C0E667E3243C48820035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667C7243C48820035C747 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DB31407717554B71006C0E22;
+			remoteInfo = "Shared Library";
+		};
+		C0E667E5243C48820035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667C7243C48820035C747 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A75FCEB323E25AB700529352;
+			remoteInfo = "Shared Library-iOS";
+		};
+		C0E667E7243C48820035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667C7243C48820035C747 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A75FD06C23E25AC700529352;
+			remoteInfo = "Shared Library-tvOS";
+		};
+		C0E667E9243C48820035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667C7243C48820035C747 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BECDF6BE0761BA81005FE872;
+			remoteInfo = "Standard DMG";
+		};
+		C0E667EB243C48820035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667C7243C48820035C747 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A75FDB8C23E4C74400529352;
+			remoteInfo = hidapi;
+		};
+		C0E667ED243C48820035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667C7243C48820035C747 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A75FDB4923E399AC00529352;
+			remoteInfo = "hidapi-iOS";
+		};
+		C0E667EF243C48820035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667C7243C48820035C747 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A75FDB6E23E3A2C900529352;
+			remoteInfo = "hidapi-tvOS";
+		};
+		C0E66803243C48960035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667FD243C48960035C747 /* SDL_image.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE1FA72E07AF4C45004B6283;
+			remoteInfo = Framework;
+		};
+		C0E66805243C48960035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667FD243C48960035C747 /* SDL_image.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE1FA74107AF4C45004B6283;
+			remoteInfo = "Static Library";
+		};
+		C0E66807243C48960035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E667FD243C48960035C747 /* SDL_image.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE1FA74507AF4C45004B6283;
+			remoteInfo = "Create DMG";
+		};
+		C0E6680F243C48A80035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E66809243C48A80035C747 /* SDL_mixer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE1FA90607AF96B2004B6283;
+			remoteInfo = Framework;
+		};
+		C0E66811243C48A80035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E66809243C48A80035C747 /* SDL_mixer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE1FA95407AF96B2004B6283;
+			remoteInfo = "Static Library";
+		};
+		C0E66813243C48A80035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E66809243C48A80035C747 /* SDL_mixer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE1FA95807AF96B3004B6283;
+			remoteInfo = "Create DMG";
+		};
+		C0E66837243C48C60035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E6682D243C48C60035C747 /* SDL_ttf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE48FD6707AFA17000BB41DA;
+			remoteInfo = Framework;
+		};
+		C0E66839243C48C60035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E6682D243C48C60035C747 /* SDL_ttf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A75FDAF323E3582C00529352;
+			remoteInfo = "Framework-iOS";
+		};
+		C0E6683B243C48C60035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E6682D243C48C60035C747 /* SDL_ttf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A75FDB0A23E36B4300529352;
+			remoteInfo = "Framework-tvOS";
+		};
+		C0E6683D243C48C60035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E6682D243C48C60035C747 /* SDL_ttf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE48FD6E07AFA17000BB41DA;
+			remoteInfo = "Static Library";
+		};
+		C0E6683F243C48C60035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E6682D243C48C60035C747 /* SDL_ttf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A75FDB2E23E3825200529352;
+			remoteInfo = "Static Library-iOS";
+		};
+		C0E66841243C48C60035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E6682D243C48C60035C747 /* SDL_ttf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A75FDB3923E3827100529352;
+			remoteInfo = "Static Library-tvOS";
+		};
+		C0E66843243C48C60035C747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0E6682D243C48C60035C747 /* SDL_ttf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE48FD7207AFA17000BB41DA;
+			remoteInfo = "Create DMG";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C02740722426D8DD008FEDD8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				C015A27D243CD07E007E6323 /* pollywog.games.cer in CopyFiles */,
+				C0E6684A243C494D0035C747 /* images in CopyFiles */,
+				C096FD982432EF460090BAD2 /* sounds in CopyFiles */,
+				C096FD992432EF460090BAD2 /* scripts in CopyFiles */,
+				C096FD9B2432EF460090BAD2 /* fonts in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C015A27A243CCF35007E6323 /* onelua.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = onelua.c; path = ../../deps/lua/onelua.c; sourceTree = "<group>"; };
+		C015A27C243CD07E007E6323 /* pollywog.games.cer */ = {isa = PBXFileReference; lastKnownFileType = text; name = pollywog.games.cer; path = ../pollywog.games.cer; sourceTree = "<group>"; };
+		C02740742426D8DD008FEDD8 /* rostrum */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rostrum; sourceTree = BUILT_PRODUCTS_DIR; };
+		C096FD942432EF460090BAD2 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sounds; path = ../../assets/sounds; sourceTree = "<group>"; };
+		C096FD952432EF460090BAD2 /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = scripts; path = ../../assets/scripts; sourceTree = "<group>"; };
+		C096FD972432EF460090BAD2 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = ../../assets/fonts; sourceTree = "<group>"; };
+		C0E667C7243C48820035C747 /* SDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL.xcodeproj; path = ../../deps/SDL/Xcode/SDL/SDL.xcodeproj; sourceTree = "<group>"; };
+		C0E667FD243C48960035C747 /* SDL_image.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL_image.xcodeproj; path = ../../deps/SDL_image/Xcode/SDL_image.xcodeproj; sourceTree = "<group>"; };
+		C0E66809243C48A80035C747 /* SDL_mixer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL_mixer.xcodeproj; path = ../../deps/SDL_mixer/Xcode/SDL_mixer.xcodeproj; sourceTree = "<group>"; };
+		C0E6682D243C48C60035C747 /* SDL_ttf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL_ttf.xcodeproj; path = ../../deps/SDL_ttf/Xcode/SDL_ttf.xcodeproj; sourceTree = "<group>"; };
+		C0E66849243C49470035C747 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = ../../assets/images; sourceTree = "<group>"; };
+		C0E6684B243C4B430035C747 /* libwebsockets.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwebsockets.a; path = "../../build/lws-macos/lib/libwebsockets.a"; sourceTree = "<group>"; };
+		C0E668CC243C4FDB0035C747 /* gamelib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gamelib.h; path = ../../src/gamelib.h; sourceTree = "<group>"; };
+		C0E668CD243C4FDB0035C747 /* network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = network.h; path = ../../src/network.h; sourceTree = "<group>"; };
+		C0E668CE243C4FDB0035C747 /* network.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = network.cpp; path = ../../src/network.cpp; sourceTree = "<group>"; };
+		C0E668CF243C4FDB0035C747 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = ../../src/global.h; sourceTree = "<group>"; };
+		C0E668D0243C4FDB0035C747 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../src/main.cpp; sourceTree = "<group>"; };
+		C0E668D1243C4FDB0035C747 /* gamelib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gamelib.cpp; path = ../../src/gamelib.cpp; sourceTree = "<group>"; };
+		C0E668D5243C508A0035C747 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		C0E668D7243C50990035C747 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C0FF657E242C5B560032D5E6 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../assets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C02740712426D8DD008FEDD8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0E668DE243C51230035C747 /* SDL2_mixer.framework in Frameworks */,
+				C0E668DD243C511E0035C747 /* SDL2_image.framework in Frameworks */,
+				C0E668DC243C51180035C747 /* SDL2.framework in Frameworks */,
+				C0E668DB243C510E0035C747 /* SDL2_ttf.framework in Frameworks */,
+				C0E668D8243C50990035C747 /* CoreGraphics.framework in Frameworks */,
+				C0E668D6243C508A0035C747 /* CoreFoundation.framework in Frameworks */,
+				C0E6684C243C4B430035C747 /* libwebsockets.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C027406B2426D8DD008FEDD8 = {
+			isa = PBXGroup;
+			children = (
+				C015A27C243CD07E007E6323 /* pollywog.games.cer */,
+				C015A27A243CCF35007E6323 /* onelua.c */,
+				C0E668D1243C4FDB0035C747 /* gamelib.cpp */,
+				C0E668CC243C4FDB0035C747 /* gamelib.h */,
+				C0E668CF243C4FDB0035C747 /* global.h */,
+				C0E668D0243C4FDB0035C747 /* main.cpp */,
+				C0E668CE243C4FDB0035C747 /* network.cpp */,
+				C0E668CD243C4FDB0035C747 /* network.h */,
+				C0E66849243C49470035C747 /* images */,
+				C096FD972432EF460090BAD2 /* fonts */,
+				C096FD952432EF460090BAD2 /* scripts */,
+				C096FD942432EF460090BAD2 /* sounds */,
+				C0E6682D243C48C60035C747 /* SDL_ttf.xcodeproj */,
+				C0E66809243C48A80035C747 /* SDL_mixer.xcodeproj */,
+				C0E667FD243C48960035C747 /* SDL_image.xcodeproj */,
+				C0E667C7243C48820035C747 /* SDL.xcodeproj */,
+				C0FF657E242C5B560032D5E6 /* assets */,
+				C02740752426D8DD008FEDD8 /* Products */,
+				C02740842426D947008FEDD8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C02740752426D8DD008FEDD8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C02740742426D8DD008FEDD8 /* rostrum */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C02740842426D947008FEDD8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0E668D7243C50990035C747 /* CoreGraphics.framework */,
+				C0E668D5243C508A0035C747 /* CoreFoundation.framework */,
+				C0E6684B243C4B430035C747 /* libwebsockets.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0E667C8243C48820035C747 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C0E667D8243C48820035C747 /* SDL2.framework */,
+				C0E667DA243C48820035C747 /* SDL2.framework */,
+				C0E667DC243C48820035C747 /* SDL2.framework */,
+				C0E667DE243C48820035C747 /* libSDL2.a */,
+				C0E667E0243C48820035C747 /* libSDL2.a */,
+				C0E667E2243C48820035C747 /* libSDL2.a */,
+				C0E667E4243C48820035C747 /* libSDL2.dylib */,
+				C0E667E6243C48820035C747 /* libSDL2.dylib */,
+				C0E667E8243C48820035C747 /* libSDL2.dylib */,
+				C0E667EA243C48820035C747 /* SDL2 */,
+				C0E667EC243C48820035C747 /* hidapi.framework */,
+				C0E667EE243C48820035C747 /* hidapi.framework */,
+				C0E667F0243C48820035C747 /* hidapi.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C0E667FE243C48960035C747 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C0E66804243C48960035C747 /* SDL2_image.framework */,
+				C0E66806243C48960035C747 /* libSDL2_image.a */,
+				C0E66808243C48960035C747 /* Create DMG */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C0E6680A243C48A80035C747 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C0E66810243C48A80035C747 /* SDL2_mixer.framework */,
+				C0E66812243C48A80035C747 /* libSDL2_mixer.a */,
+				C0E66814243C48A80035C747 /* Create DMG */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C0E6682E243C48C60035C747 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C0E66838243C48C60035C747 /* SDL2_ttf.framework */,
+				C0E6683A243C48C60035C747 /* SDL2_ttf.framework */,
+				C0E6683C243C48C60035C747 /* SDL2_ttf.framework */,
+				C0E6683E243C48C60035C747 /* libSDL2_ttf.a */,
+				C0E66840243C48C60035C747 /* libSDL2_ttf.a */,
+				C0E66842243C48C60035C747 /* libSDL2_ttf.a */,
+				C0E66844243C48C60035C747 /* Create DMG */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C02740732426D8DD008FEDD8 /* rostrum */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C027407B2426D8DD008FEDD8 /* Build configuration list for PBXNativeTarget "rostrum" */;
+			buildPhases = (
+				C02740702426D8DD008FEDD8 /* Sources */,
+				C02740712426D8DD008FEDD8 /* Frameworks */,
+				C02740722426D8DD008FEDD8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = rostrum;
+			productName = rostrum;
+			productReference = C02740742426D8DD008FEDD8 /* rostrum */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C027406C2426D8DD008FEDD8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Lincoln Bergeson";
+				TargetAttributes = {
+					C02740732426D8DD008FEDD8 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = C027406F2426D8DD008FEDD8 /* Build configuration list for PBXProject "tadpole" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C027406B2426D8DD008FEDD8;
+			productRefGroup = C02740752426D8DD008FEDD8 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C0E667C8243C48820035C747 /* Products */;
+					ProjectRef = C0E667C7243C48820035C747 /* SDL.xcodeproj */;
+				},
+				{
+					ProductGroup = C0E667FE243C48960035C747 /* Products */;
+					ProjectRef = C0E667FD243C48960035C747 /* SDL_image.xcodeproj */;
+				},
+				{
+					ProductGroup = C0E6680A243C48A80035C747 /* Products */;
+					ProjectRef = C0E66809243C48A80035C747 /* SDL_mixer.xcodeproj */;
+				},
+				{
+					ProductGroup = C0E6682E243C48C60035C747 /* Products */;
+					ProjectRef = C0E6682D243C48C60035C747 /* SDL_ttf.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				C02740732426D8DD008FEDD8 /* rostrum */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C0E667D8243C48820035C747 /* SDL2.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SDL2.framework;
+			remoteRef = C0E667D7243C48820035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E667DA243C48820035C747 /* SDL2.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SDL2.framework;
+			remoteRef = C0E667D9243C48820035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E667DC243C48820035C747 /* SDL2.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SDL2.framework;
+			remoteRef = C0E667DB243C48820035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E667DE243C48820035C747 /* libSDL2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2.a;
+			remoteRef = C0E667DD243C48820035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E667E0243C48820035C747 /* libSDL2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2.a;
+			remoteRef = C0E667DF243C48820035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E667E2243C48820035C747 /* libSDL2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2.a;
+			remoteRef = C0E667E1243C48820035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E667E4243C48820035C747 /* libSDL2.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libSDL2.dylib;
+			remoteRef = C0E667E3243C48820035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E667E6243C48820035C747 /* libSDL2.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libSDL2.dylib;
+			remoteRef = C0E667E5243C48820035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E667E8243C48820035C747 /* libSDL2.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libSDL2.dylib;
+			remoteRef = C0E667E7243C48820035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E667EA243C48820035C747 /* SDL2 */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = SDL2;
+			remoteRef = C0E667E9243C48820035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E667EC243C48820035C747 /* hidapi.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = hidapi.framework;
+			remoteRef = C0E667EB243C48820035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E667EE243C48820035C747 /* hidapi.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = hidapi.framework;
+			remoteRef = C0E667ED243C48820035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E667F0243C48820035C747 /* hidapi.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = hidapi.framework;
+			remoteRef = C0E667EF243C48820035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E66804243C48960035C747 /* SDL2_image.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SDL2_image.framework;
+			remoteRef = C0E66803243C48960035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E66806243C48960035C747 /* libSDL2_image.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2_image.a;
+			remoteRef = C0E66805243C48960035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E66808243C48960035C747 /* Create DMG */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = "Create DMG";
+			remoteRef = C0E66807243C48960035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E66810243C48A80035C747 /* SDL2_mixer.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SDL2_mixer.framework;
+			remoteRef = C0E6680F243C48A80035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E66812243C48A80035C747 /* libSDL2_mixer.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2_mixer.a;
+			remoteRef = C0E66811243C48A80035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E66814243C48A80035C747 /* Create DMG */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = "Create DMG";
+			remoteRef = C0E66813243C48A80035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E66838243C48C60035C747 /* SDL2_ttf.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SDL2_ttf.framework;
+			remoteRef = C0E66837243C48C60035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E6683A243C48C60035C747 /* SDL2_ttf.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SDL2_ttf.framework;
+			remoteRef = C0E66839243C48C60035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E6683C243C48C60035C747 /* SDL2_ttf.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SDL2_ttf.framework;
+			remoteRef = C0E6683B243C48C60035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E6683E243C48C60035C747 /* libSDL2_ttf.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2_ttf.a;
+			remoteRef = C0E6683D243C48C60035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E66840243C48C60035C747 /* libSDL2_ttf.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2_ttf.a;
+			remoteRef = C0E6683F243C48C60035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E66842243C48C60035C747 /* libSDL2_ttf.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2_ttf.a;
+			remoteRef = C0E66841243C48C60035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0E66844243C48C60035C747 /* Create DMG */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = "Create DMG";
+			remoteRef = C0E66843243C48C60035C747 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C02740702426D8DD008FEDD8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0E668D2243C4FDB0035C747 /* network.cpp in Sources */,
+				C015A27B243CCF35007E6323 /* onelua.c in Sources */,
+				C0E668D4243C4FDB0035C747 /* gamelib.cpp in Sources */,
+				C0E668D3243C4FDB0035C747 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C02740792426D8DD008FEDD8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = ../../lua/src;
+			};
+			name = Debug;
+		};
+		C027407A2426D8DD008FEDD8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = ../../lua/src;
+			};
+			name = Release;
+		};
+		C027407C2426D8DD008FEDD8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D9BR8NFB7H;
+				ENABLE_HARDENED_RUNTIME = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					BUILD_TARGET_MACOS,
+					MAKE_LIB,
+				);
+				HEADER_SEARCH_PATHS = (
+					../../deps/lua,
+					../../src,
+					"../../build/lws-macos/include",
+					../../deps/SDL_image,
+					../../deps/SDL/include,
+					../../deps/SDL_mixer/include,
+					../../deps/SDL_ttf,
+				);
+				LIBRARY_SEARCH_PATHS = "../../build/lws-macos/lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
+				PRODUCT_BUNDLE_IDENTIFIER = games.pollywog.rostrum;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = (
+					"../../src/**",
+					"../../deps/**",
+				);
+			};
+			name = Debug;
+		};
+		C027407D2426D8DD008FEDD8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D9BR8NFB7H;
+				ENABLE_HARDENED_RUNTIME = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					BUILD_TARGET_MACOS,
+					MAKE_LIB,
+				);
+				HEADER_SEARCH_PATHS = (
+					../../deps/lua,
+					../../src,
+					"../../build/lws-macos/include",
+					../../deps/SDL_image,
+					../../deps/SDL/include,
+					../../deps/SDL_mixer/include,
+					../../deps/SDL_ttf,
+				);
+				LIBRARY_SEARCH_PATHS = "../../build/lws-macos/lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
+				PRODUCT_BUNDLE_IDENTIFIER = games.pollywog.rostrum;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = (
+					"../../src/**",
+					"../../deps/**",
+				);
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C027406F2426D8DD008FEDD8 /* Build configuration list for PBXProject "tadpole" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C02740792426D8DD008FEDD8 /* Debug */,
+				C027407A2426D8DD008FEDD8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C027407B2426D8DD008FEDD8 /* Build configuration list for PBXNativeTarget "rostrum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C027407C2426D8DD008FEDD8 /* Debug */,
+				C027407D2426D8DD008FEDD8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C027406C2426D8DD008FEDD8 /* Project object */;
+}

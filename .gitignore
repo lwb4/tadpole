@@ -14,12 +14,17 @@
 # In the repo, but not accepting changes
 build/lws-windows
 build/all-linux
+build/lws-macos
 
 ##############
 # EMSCRIPTEN #
 ##############
 
 xplat/web/dist
+xplat/web/tadpole.data
+xplat/web/tadpole.html
+xplat/web/tadpole.js
+xplat/web/tadpole.wasm
 
 ##############
 # WINDOWS VM #

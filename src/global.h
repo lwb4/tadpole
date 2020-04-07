@@ -1,7 +1,7 @@
 #ifndef include_sdl_hpp
 #define include_sdl_hpp
 
-#if defined(BUILD_TARGET_MACOS) || defined(BUILD_TARGET_LINUX)
+#if defined(BUILD_TARGET_LINUX)
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:../../../deps/lua/lapi.c">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "New Group">
+   </Group>
+   <FileRef
+      location = "group:../../../deps/lua/lauxlib.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lbaselib.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lcode.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lcorolib.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lctype.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/ldblib.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/ldebug.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/ldo.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/ldump.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lfunc.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lgc.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/linit.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/liolib.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/llex.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lmathlib.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lmem.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/loadlib.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lobject.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lopcodes.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/loslib.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lparser.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lstate.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lstring.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lstrlib.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/ltable.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/ltablib.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/ltests.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/ltm.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lundump.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lutf8lib.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lvm.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/lzio.c">
+   </FileRef>
+   <FileRef
+      location = "group:../../../deps/lua/onelua.c">
+   </FileRef>
+   <FileRef
+      location = "self:">
+   </FileRef>
+</Workspace>

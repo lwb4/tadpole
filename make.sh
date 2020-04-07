@@ -4,6 +4,7 @@ set -e
 
 CURRDIR="$(pwd)"
 LINUX_INSTALL="$CURRDIR/build/all-linux"
+MACOS_INSTALL="$CURRDIR/build/lws-macos"
 
 ######################
 # DEFINE SUBCOMMANDS #
@@ -64,11 +65,12 @@ buildLinux() {
 
     echo "<=================== mbedtls"
     cd "$CURRDIR/deps/mbedtls"
+    make clean
     make no_test CC="cc -fPIC"
     make install DESTDIR="$LINUX_INSTALL"
 
     echo "<=================== libwebsockets"
-    cd "$CURRDIR/build/all-linux"
+    cd "$LINUX_INSTALL"
     cmake \
         -DLWS_WITH_MBEDTLS=ON \
         -DLWS_MBEDTLS_LIBRARIES="$LINUX_INSTALL/lib/libmbedtls.a;$LINUX_INSTALL/lib/libmbedcrypto.a;$LINUX_INSTALL/lib/libmbedx509.a" \
@@ -83,7 +85,40 @@ buildLinux() {
 }
 
 buildMac() {
-    echo "mac"
+    # echo "<=================== SDL"
+    # cd "$CURRDIR/deps/SDL"
+    # rm -rf build
+    # ./configure
+    # make
+    # make install
+
+    echo "<=================== cleaning up SDL_image"
+    cd "$CURRDIR/deps/SDL_image"
+    make clean
+
+    echo "<=================== cleaning up SDL_mixer"
+    cd "$CURRDIR/deps/SDL_mixer"
+    make clean
+
+    echo "<=================== mbedtls"
+    cd "$CURRDIR/deps/mbedtls"
+    make clean
+    make no_test CC="cc -fPIC"
+    make install DESTDIR="$MACOS_INSTALL"
+
+    echo "<=================== libwebsockets"
+    cd "$MACOS_INSTALL"
+    cmake \
+        -DLWS_WITH_MBEDTLS=ON \
+        -DLWS_MBEDTLS_LIBRARIES="$MACOS_INSTALL/lib/libmbedtls.a;$MACOS_INSTALL/lib/libmbedcrypto.a;$MACOS_INSTALL/lib/libmbedx509.a" \
+        -DLWS_MBEDTLS_INCLUDE_DIRS="$MACOS_INSTALL/include" \
+        "$CURRDIR/deps/libwebsockets"
+    make
+    sudo make install
+
+    echo ""
+    echo "now open up the project file xplat/macos/tadpole.xcodeproj in Xcode to run your program!"
+    echo ""
 }
 
 buildNative() {
@@ -106,6 +141,11 @@ buildBrowser() {
     cd deps/emsdk
     ./emsdk install latest
     ./emsdk activate latest
+    source deps/emsdk/emsdk_env.sh
+
+    echo ""
+    echo "now go to xplat/web and run ./build.sh to run your program!"
+    echo ""
 }
 
 ########################

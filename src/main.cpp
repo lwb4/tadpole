@@ -37,9 +37,15 @@ void on_network_request(RECV_MESSAGE_TYPE msg);
 
 bool IS_RUNNING;
 
+#include <unistd.h>
+
 #undef main
 int main(int argc, char* args[]) {
 
+    char buf[256];
+    getcwd(buf, 256);
+    printf("cwd: %s\n", buf);
+    
 #ifdef BUILD_TARGET_ANDROID
     start_logger("android-rostrum");
 #endif
