@@ -1,10 +1,15 @@
 os:
   - linux
 language: generic
+
 before_install:
   - sudo apt-get update
   - sudo apt-get -y install xorg-dev libfreetype6-dev libvorbis-dev libogg-dev libasound2-dev libpulse-dev cmake
+
 install:
+  - ./make.sh browser
+  - cd xplat/web && ./build.sh noserver
   - ./make.sh native
   - cd xplat/linux && ./build.sh
+
 dist: bionic

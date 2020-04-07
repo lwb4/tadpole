@@ -9,6 +9,10 @@
 
 extern bool IS_RUNNING;
 
+static int SERVER_PORT = 8080;
+static const char *SERVER_ADDRESS = "pollywog.games";
+static const char *SERVER_PATH = "/";
+
 #ifdef BUILD_TARGET_BROWSER
 
 // Emscripten has native support for websockets, so we use their API here
@@ -53,7 +57,9 @@ void close_socket() {
 
 void connect_socket(void (*f)()) {
     struct EmscriptenWebSocketCreateAttributes attr;
-    attr.url = WEBSOCKET_URL;
+    char url[256];
+    snprintf(url, 256, "wss://%s:%d%s", SERVER_ADDRESS, SERVER_PORT, SERVER_PATH);
+    attr.url = url;
     attr.protocols = NULL;
     attr.createOnMainThread = 1;
     ws = emscripten_websocket_new(&attr);
@@ -88,9 +94,6 @@ extern "C" {
 lws_sorted_usec_list_t  SUL;
 
 static struct lws_context *LWS_CONTEXT;
-static int SERVER_PORT = 8080;
-static const char *SERVER_ADDRESS = "pollywog.games";
-static const char *SERVER_PATH = "/";
 
 static int service_callback(struct lws *wsi, enum lws_callback_reasons reason, void *user, void *in, size_t len);
 static void one_frame(lws_sorted_usec_list_t *sul);

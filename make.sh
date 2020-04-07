@@ -22,6 +22,7 @@ printUsage() {
     echo "                  for example, on a Mac, this builds libraries for Mac"
     echo "    ios       -- cross-compile iOS libraries (only works on a Mac)"
     echo "    android   -- cross-compile Android libraries (works on all platforms)"
+    echo "    browser   -- install and activate the Emscripten SDK"
     echo ""
     echo "this only builds libraries; to run your program, you still have to"
     echo "build each platform individually in their respective xplat folders"
@@ -101,6 +102,13 @@ buildiOS() {
     echo "building for iOS"
 }
 
+buildBrowser() {
+    cd deps/emsdk
+    ./emsdk install latest
+    ./emsdk activate latest
+    source ./emsdk_env.sh
+}
+
 ########################
 # DETECT CALL LOCATION #
 ########################
@@ -140,6 +148,7 @@ case "$1" in
     native)     buildNative "$MACHINE";;
     android)    buildAndroid;;
     ios)        buildiOS;;
+    browser)    buildBrowser;;
     *)          printUsage;;
 esac
 

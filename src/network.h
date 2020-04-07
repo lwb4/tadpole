@@ -1,8 +1,6 @@
 #ifndef network_h
 #define network_h
 
-#define WEBSOCKET_URL "ws://localhost:8181"
-
 typedef unsigned char* RECV_MESSAGE_TYPE;
 typedef const char* SEND_MESSAGE_TYPE;
 
