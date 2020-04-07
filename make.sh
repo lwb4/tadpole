@@ -74,7 +74,7 @@ buildLinux() {
         -DLWS_MBEDTLS_INCLUDE_DIRS="$LINUX_INSTALL/include" \
         "$CURRDIR/deps/libwebsockets"
     make
-    make install
+    sudo make install
 
     echo ""
     echo "now go into the xplat/linux directory and run ./build.sh to run your program!"
