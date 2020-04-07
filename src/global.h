@@ -3,12 +3,15 @@
 
 #if defined(BUILD_TARGET_MACOS) || defined(BUILD_TARGET_LINUX)
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 #else
 #include "SDL.h"
-#endif
 #include "SDL_image.h"
 #include "SDL_ttf.h"
 #include "SDL_mixer.h"
+#endif
 
 #ifdef BUILD_TARGET_BROWSER
 #include <emscripten.h>
