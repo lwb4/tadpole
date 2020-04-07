@@ -29,3 +29,4 @@ runserver() {
 }
 
 [[ -z "$1" ]] && runserver
+exit 0
