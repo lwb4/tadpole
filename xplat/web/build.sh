@@ -12,7 +12,7 @@ emcc ../../src/*.cpp \
     -s USE_SDL_IMAGE=2 \
     -s SDL2_IMAGE_FORMATS='["bmp","png"]' \
     -s USE_SDL_MIXER=2 \
-    -o dist/tadpole.html \
+    -o tadpole.html \
     --preload-file ../../assets/fonts@/fonts \
     --preload-file ../../assets/images@/images \
     --preload-file ../../assets/scripts@/scripts \
@@ -22,7 +22,7 @@ echo "BUILD SUCCEEDED!"
 runserver() {
     echo ""
     echo "VISIT THIS PAGE IN YOUR BROWSER:"
-    echo "http://localhost:5000/dist/tadpole.html"
+    echo "http://localhost:5000/tadpole.html"
     echo ""
     echo "Running server..."
     python -m SimpleHTTPServer 5000
