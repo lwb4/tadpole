@@ -6,7 +6,7 @@ install:
   - sudo apt-get update
   - sudo apt-get -y install xorg-dev libfreetype6-dev libvorbis-dev libogg-dev libasound2-dev libpulse-dev cmake
   - ./make.sh browser
-  - source ./emsdk_env.sh
+  - source deps/emsdk/emsdk_env.sh
   - cd xplat/web && ./build.sh noserver
   - cd ../..
   - ./make.sh native
