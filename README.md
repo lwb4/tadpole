@@ -8,21 +8,21 @@ The website for this project where you can find updates and blog posts is at htt
 
 I welcome any and all contributors who are interested in making my vision into a reality. If you'd like to contribute, please create an issue to track your ideas so I know what you plan to work on and we can avoid duplicating effort. If you want to contribute but don't know how or what, please create an issue anyway and I'll give you some ideas!
 
-## Instructions
+## Installation
 
 On Mac and Linux, follow these steps:
 
-1. Clone this repo recursively (has to be recursive to get all the git submodules)
-2. Create your game and put it in the `assets` directory
-3. Use the provided `make.sh` script to build for Mac, iOS, Linux, Android, and Emscripten
-4. Open up the generated project files, found under the `xplat` directory
+1. Clone this repo recursively (has to be recursive to get all the git submodules).
+2. Create your game and put it in the `assets` directory.
+3. Use the provided `make.sh` script to build for Mac, iOS, Linux, Android, and Emscripten.
+4. Open up the generated project files, found under the `xplat` directory.
 
 On Windows, follow these steps:
 
-1. Clone this repo recursively
-2. Open a Visual Studio Developer Command Prompt, cd to the project root, and run make.bat. This generates the Visual Studio project files for libwebsockets
-3. Depending on your version of Visual Studio, you may have to right click the solution and select "retarget solution"
-4. Now you can open xplat/windows/windows.sln and it should build
+1. Clone this repo recursively.
+2. Open a Visual Studio Developer Command Prompt, cd to where you cloned this repository, and run make.bat. This generates the Visual Studio project files for libwebsockets.
+3. Depending on your version of Visual Studio, you may have to right click the solution and select "retarget solution".
+4. Now you can open xplat/windows/windows.sln and it should build.
 
 Tadpole Engine itself is fairly lean but has to pull in a few dependencies to be able to compile on so many different architectures. The size may or may not be a problem, depending on the speed of your network connection. I don't plan to add any more dependencies but I make no guarantees. If you prefer, you can clone this repository regularly (not recursive) and then manually pull the submodules that you need. Proceed down that path at your own risk.
 
@@ -45,7 +45,7 @@ To build Tadpole projects, you will need the following pieces of software:
 
 * Mac/iOS: XCode, and brew install cmake
 * Windows: Visual Studio (I built the project with community edition 2019, but anything should work)
-* Linux: Nothing, unless your distro doesn't come with basic development tools like make and gcc
+* Linux: cmake, GNU make and autotools, and libfreetype (on Ubuntu this is libfreetype6-dev), probably also libvorbis-dev, libogg-dev, libasound2-dev, libpulse-dev, maybe some others
 * Android: Android Studio, then go to SDK Manager -> install Android NDK and CMake
 
 Certain flavors of Linux may need additional packages; for example, on Ubuntu I had to install `xorg-dev` to get rid of the "no video driver available" error from SDL.

@@ -1,0 +1,8 @@
+os:
+  - linux
+install:
+  - sudo apt-get install xorg-dev libfreetype6-dev libvorbis-dev libogg-dev libasound2-dev libpulse-dev cmake && ./make.sh native
+scripts:
+  - cd xplat/linux && ./build.sh
+sudo: required
+dist: trusty

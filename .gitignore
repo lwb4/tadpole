@@ -13,6 +13,7 @@
 
 # In the repo, but not accepting changes
 build/lws-windows
+build/all-linux
 
 ##############
 # EMSCRIPTEN #
