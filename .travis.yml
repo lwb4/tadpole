@@ -1,8 +1,9 @@
 os:
   - linux
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y install xorg-dev libfreetype6-dev libvorbis-dev libogg-dev libasound2-dev libpulse-dev cmake
 install:
-  - sudo apt-get install xorg-dev libfreetype6-dev libvorbis-dev libogg-dev libasound2-dev libpulse-dev cmake && ./make.sh native
-scripts:
+  - ./make.sh native
   - cd xplat/linux && ./build.sh
-sudo: required
-dist: trusty
+dist: bionic

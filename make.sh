@@ -56,6 +56,7 @@ buildLinux() {
 
     echo "<=================== sdl_ttf"
     cd "$CURRDIR/deps/SDL_ttf"
+    sh autogen.sh
     ./configure --prefix "$LINUX_INSTALL"
     make
     make install
