@@ -85,24 +85,8 @@ buildLinux() {
 }
 
 buildMac() {
-    # echo "<=================== SDL"
-    # cd "$CURRDIR/deps/SDL"
-    # rm -rf build
-    # ./configure
-    # make
-    # make install
-
-    echo "<=================== cleaning up SDL_image"
-    cd "$CURRDIR/deps/SDL_image"
-    make clean
-
-    echo "<=================== cleaning up SDL_mixer"
-    cd "$CURRDIR/deps/SDL_mixer"
-    make clean
-
     echo "<=================== mbedtls"
     cd "$CURRDIR/deps/mbedtls"
-    make clean
     make no_test CC="cc -fPIC"
     make install DESTDIR="$MACOS_INSTALL"
 
@@ -141,7 +125,7 @@ buildBrowser() {
     cd deps/emsdk
     ./emsdk install latest
     ./emsdk activate latest
-    source deps/emsdk/emsdk_env.sh
+    source emsdk_env.sh
 
     echo ""
     echo "now go to xplat/web and run ./build.sh to run your program!"
