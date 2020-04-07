@@ -9,6 +9,7 @@ before_install:
 install:
   - ./make.sh browser
   - cd xplat/web && ./build.sh noserver
+  - cd ../..
   - ./make.sh native
   - cd xplat/linux && ./build.sh
 
