@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-xcodebuild -scheme rostrum build -project tadpole.xcodeproj
+xcodebuild CODE_SIGNING_REQUIRED=NO -scheme rostrum build -project tadpole.xcodeproj
