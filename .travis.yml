@@ -42,6 +42,7 @@ jobs:
 
   - name: Android
     language: android
+    dist: trusty
     android:
       components:
         - tools
