@@ -26,3 +26,6 @@
 [submodule "deps/SDL_image"]
 	path = deps/SDL_image
 	url = https://github.com/lwb4/SDL_image.git
+[submodule "deps/libwebsockets-ios"]
+	path = deps/libwebsockets-ios
+	url = https://github.com/lwb4/libwebsockets-ios
