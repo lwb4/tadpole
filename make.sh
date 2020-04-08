@@ -222,9 +222,6 @@ buildiOS() {
         -DLWS_MBEDTLS_LIBRARIES="$MBED_IOS_LIB/libmbedtls.a;$MBED_IOS_LIB/libmbedcrypto.a;$MBED_IOS_LIB/libmbedx509.a" \
         -DLWS_MBEDTLS_INCLUDE_DIRS="$IOS_INSTALL/mbed/include" \
         "$CURRDIR/deps/libwebsockets-ios"
-    cmake \
-        --build . \
-        --target websockets
 }
 
 buildBrowser() {
