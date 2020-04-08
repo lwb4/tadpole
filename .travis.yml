@@ -29,16 +29,16 @@ jobs:
       - ./make.sh native
     script: cd xplat/macos && ./build.sh
 
-  # - name: iOS
-  #   os: osx
-  #   osx_image: xcode 11.3
-  #   language: objective-c
-  #   xcode_project: tadpole.xcodeproj
-  #   xcode_scheme: Debug
-  #   xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
-  #   install:
-  #     - ./make.sh ios
-  #   script: cd xplat/ios && ./build.sh
+  - name: iOS
+    os: osx
+    osx_image: xcode 11.3
+    language: objective-c
+    xcode_project: rostrum.xcodeproj
+    xcode_scheme: rostrum-travis
+    xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
+    install:
+      - ./make.sh ios
+    script: cd xplat/ios && ./build.sh
 
   - name: Android
     language: android

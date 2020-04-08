@@ -39,7 +39,7 @@ bool IS_RUNNING;
 
 #include <unistd.h>
 
-#ifndef BUILD_TARGET_ANDROID
+#if !defined(BUILD_TARGET_ANDROID) && !defined(BUILD_TARGET_IOS)
 #undef main
 #endif
 

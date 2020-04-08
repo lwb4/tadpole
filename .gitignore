@@ -15,6 +15,7 @@
 build/lws-windows
 build/all-linux
 build/lws-macos
+build/lws-ios
 
 build/lws-android/arm64-v8a
 build/lws-android/armeabi-v7a
@@ -22,6 +23,8 @@ build/lws-android/x86
 build/lws-android/x86_64
 
 xplat/android/app/src/main/assets
+
+xplat/ios/build
 
 ##############
 # EMSCRIPTEN #

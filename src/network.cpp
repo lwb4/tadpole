@@ -139,12 +139,12 @@ void connect_socket(void (*f)()) {
     info.protocols = PROTOCOLS;
     info.options = LWS_SERVER_OPTION_DO_SSL_GLOBAL_INIT;
     
-#ifdef BUILD_TARGET_MACOS
+#if defined(BUILD_TARGET_MACOS)
     // this is a terrible hack, but at least it's temporary
     // eventually ca cert location should be either platform specific and include everything
     // or defined in lua code
     info.client_ssl_ca_filepath = "pollywog.games.cer";
-#elif BUILD_TARGET_ANDROID
+#elif defined(BUILD_TARGET_ANDROID) || defined(BUILD_TARGET_IOS)
     SDL_RWops *io = SDL_RWFromFile("pollywog.games.cer", "rb");
     if (io == NULL) {
         fprintf(stderr, "could not read ca cert from sdl rwops\n");

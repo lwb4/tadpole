@@ -140,7 +140,7 @@ make_lws_android() {
         -DCMAKE_BUILD_TYPE=Release \
         -DANDROID_NDK="$NDK_ROOT" \
         -DANDROID_ABI="$1" \
-        -DCMAKE_TOOLCHAIN_FILE="$NDK_ROOT/build/cmake/android.toolchain.cmake" \
+        -DCMAKE_TOOLCHAIN_FILE="$CMAKE_ROOT/android.toolchain.cmake" \
         "$CURRDIR/deps/mbedtls"
     make
     make install
@@ -163,8 +163,6 @@ make_lws_android() {
 buildAndroid() {
     [ -z "$ANDROID_HOME" ] && echo 'Environment variable ANDROID_HOME not set' && exit 1
     [ -z "$NDK_ROOT" ] && echo 'Environment variable NDK_ROOT not set' && exit 1
-
-    cat $CMAKE_ROOT/android.toolchain.cmake
 
     set +e
     for val in SDL SDL_image SDL_mixer SDL_ttf lua; do
