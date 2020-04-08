@@ -140,6 +140,7 @@ make_lws_android() {
         -DCMAKE_BUILD_TYPE=Release \
         -DANDROID_NDK="$NDK_ROOT" \
         -DANDROID_ABI="$1" \
+        -DANDROID_PLATFORM="android-26" \
         -DCMAKE_TOOLCHAIN_FILE="$CMAKE_ROOT/android.toolchain.cmake" \
         "$CURRDIR/deps/mbedtls"
     make
@@ -154,6 +155,7 @@ make_lws_android() {
         -DCMAKE_BUILD_TYPE=Release \
         -DANDROID_NDK="$NDK_ROOT" \
         -DANDROID_ABI="$1" \
+        -DANDROID_PLATFORM="android-26" \
         -DCMAKE_TOOLCHAIN_FILE="$CMAKE_ROOT/android.toolchain.cmake" \
         "$CURRDIR/deps/libwebsockets"
     make
