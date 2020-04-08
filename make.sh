@@ -160,8 +160,10 @@ make_lws_android() {
 }
 
 buildAndroid() {
-    env
     [ -z "$NDK_ROOT" ] && echo 'Environment variable NDK_ROOT not set' && exit 1
+    echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+    find $ANDROID_HOME
+    echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 
     set +e
     for val in SDL SDL_image SDL_mixer SDL_ttf lua; do
@@ -193,21 +195,43 @@ buildiOS() {
         -G Xcode \
         -DCMAKE_INSTALL_PREFIX="$IOS_INSTALL/mbed" \
         -DCMAKE_TOOLCHAIN_FILE="$CURRDIR/deps/ios-cmake/ios.toolchain.cmake" \
-        -DPLATFORM=OS64COMBINED \
+        -DPLATFORM=SIMULATOR64 \
         -DCMAKE_BUILD_TYPE=Release \
         -DENABLE_TESTING=OFF \
         -DENABLE_PROGRAMS=OFF \
         "$CURRDIR/deps/mbedtls"
-    xcodebuild build -scheme mbedtls -project "mbed TLS.xcodeproj"
+    cmake \
+        --build . \
+        --target mbedtls \
+        -- \
+        BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+        -UseModernBuildSystem=YES
+    cmake \
+        --install . \
+        --config Debug-iphonesimulator
 
-    # cd $IOS_INSTALL/lws
-    # cmake \
-    #     -G Xcode \
-    #     -DCMAKE_INSTALL_PREFIX="$IOS_INSTALL/lws" \
-    #     -DCMAKE_TOOLCHAIN_FILE="$CURRDIR/deps/ios-cmake/ios.toolchain.cmake" \
-    #     -DPLATFORM=OS64COMBINED \
-    #     -DCMAKE_BUILD_TYPE=Release \
-    #     "$CURRDIR/deps/libwebsockets"
+    MBED_IOS_LIB="$IOS_INSTALL/mbed/library/Debug-iphonesimulator"
+
+    cd $IOS_INSTALL/lws
+    cmake \
+        -G Xcode \
+        -DCMAKE_INSTALL_PREFIX="$IOS_INSTALL/lws" \
+        -DCMAKE_TOOLCHAIN_FILE="$CURRDIR/deps/ios-cmake/ios.toolchain.cmake" \
+        -DPLATFORM=SIMULATOR64 \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DLWS_WITHOUT_TESTAPPS=ON \
+        -DLWS_HAVE_EVENTFD=OFF \
+        -DLWS_HAVE_LIBCAP=OFF \
+        -DLWS_WITH_MBEDTLS=ON \
+        -DLWS_MBEDTLS_LIBRARIES="$MBED_IOS_LIB/libmbedtls.a;$MBED_IOS_LIB/libmbedcrypto.a;$MBED_IOS_LIB/libmbedx509.a" \
+        -DLWS_MBEDTLS_INCLUDE_DIRS="$IOS_INSTALL/mbed/include" \
+        "$CURRDIR/deps/libwebsockets-ios"
+    cmake \
+        --build . \
+        --target websockets
+    cmake \
+        --install . \
+        --config Debug
 }
 
 buildBrowser() {
