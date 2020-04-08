@@ -119,6 +119,7 @@ buildNative() {
 
 make_lws_android() {
     PREFIX="$ANDROID_INSTALL/$1"
+    CMAKE_ROOT="${CMAKE_ROOT:-$NDK_ROOT/build/cmake}"
 
     set +e
     rm -rf \
@@ -153,17 +154,15 @@ make_lws_android() {
         -DCMAKE_BUILD_TYPE=Release \
         -DANDROID_NDK="$NDK_ROOT" \
         -DANDROID_ABI="$1" \
-        -DCMAKE_TOOLCHAIN_FILE="$NDK_ROOT/build/cmake/android.toolchain.cmake" \
+        -DCMAKE_TOOLCHAIN_FILE="$CMAKE_ROOT/android.toolchain.cmake" \
         "$CURRDIR/deps/libwebsockets"
     make
     make install
 }
 
 buildAndroid() {
+    [ -z "$ANDROID_HOME" ] && echo 'Environment variable ANDROID_HOME not set' && exit 1
     [ -z "$NDK_ROOT" ] && echo 'Environment variable NDK_ROOT not set' && exit 1
-    echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-    find $ANDROID_HOME
-    echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 
     set +e
     for val in SDL SDL_image SDL_mixer SDL_ttf lua; do
@@ -206,9 +205,6 @@ buildiOS() {
         -- \
         BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
         -UseModernBuildSystem=YES
-    cmake \
-        --install . \
-        --config Debug-iphonesimulator
 
     MBED_IOS_LIB="$IOS_INSTALL/mbed/library/Debug-iphonesimulator"
 
