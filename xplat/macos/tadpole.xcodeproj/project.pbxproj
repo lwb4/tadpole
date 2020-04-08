@@ -23,6 +23,22 @@
 		C0E668DC243C51180035C747 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E667D8243C48820035C747 /* SDL2.framework */; };
 		C0E668DD243C511E0035C747 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E66804243C48960035C747 /* SDL2_image.framework */; };
 		C0E668DE243C51230035C747 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E66810243C48A80035C747 /* SDL2_mixer.framework */; };
+		C0FF9CA4243D87D500D03111 /* network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0E668CE243C4FDB0035C747 /* network.cpp */; };
+		C0FF9CA5243D87D500D03111 /* onelua.c in Sources */ = {isa = PBXBuildFile; fileRef = C015A27A243CCF35007E6323 /* onelua.c */; };
+		C0FF9CA6243D87D500D03111 /* gamelib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0E668D1243C4FDB0035C747 /* gamelib.cpp */; };
+		C0FF9CA7243D87D500D03111 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0E668D0243C4FDB0035C747 /* main.cpp */; };
+		C0FF9CA9243D87D500D03111 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E66810243C48A80035C747 /* SDL2_mixer.framework */; };
+		C0FF9CAA243D87D500D03111 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E66804243C48960035C747 /* SDL2_image.framework */; };
+		C0FF9CAB243D87D500D03111 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E667D8243C48820035C747 /* SDL2.framework */; };
+		C0FF9CAC243D87D500D03111 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E66838243C48C60035C747 /* SDL2_ttf.framework */; };
+		C0FF9CAD243D87D500D03111 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E668D7243C50990035C747 /* CoreGraphics.framework */; };
+		C0FF9CAE243D87D500D03111 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E668D5243C508A0035C747 /* CoreFoundation.framework */; };
+		C0FF9CAF243D87D500D03111 /* libwebsockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E6684B243C4B430035C747 /* libwebsockets.a */; };
+		C0FF9CB1243D87D500D03111 /* pollywog.games.cer in CopyFiles */ = {isa = PBXBuildFile; fileRef = C015A27C243CD07E007E6323 /* pollywog.games.cer */; };
+		C0FF9CB2243D87D500D03111 /* images in CopyFiles */ = {isa = PBXBuildFile; fileRef = C0E66849243C49470035C747 /* images */; };
+		C0FF9CB3243D87D500D03111 /* sounds in CopyFiles */ = {isa = PBXBuildFile; fileRef = C096FD942432EF460090BAD2 /* sounds */; };
+		C0FF9CB4243D87D500D03111 /* scripts in CopyFiles */ = {isa = PBXBuildFile; fileRef = C096FD952432EF460090BAD2 /* scripts */; };
+		C0FF9CB5243D87D500D03111 /* fonts in CopyFiles */ = {isa = PBXBuildFile; fileRef = C096FD972432EF460090BAD2 /* fonts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,6 +241,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C0FF9CB0243D87D500D03111 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				C0FF9CB1243D87D500D03111 /* pollywog.games.cer in CopyFiles */,
+				C0FF9CB2243D87D500D03111 /* images in CopyFiles */,
+				C0FF9CB3243D87D500D03111 /* sounds in CopyFiles */,
+				C0FF9CB4243D87D500D03111 /* scripts in CopyFiles */,
+				C0FF9CB5243D87D500D03111 /* fonts in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -249,6 +279,7 @@
 		C0E668D5243C508A0035C747 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		C0E668D7243C50990035C747 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C0FF657E242C5B560032D5E6 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../assets; sourceTree = "<group>"; };
+		C0FF9CB9243D87D500D03111 /* rostrum-travis */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "rostrum-travis"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +294,20 @@
 				C0E668D8243C50990035C747 /* CoreGraphics.framework in Frameworks */,
 				C0E668D6243C508A0035C747 /* CoreFoundation.framework in Frameworks */,
 				C0E6684C243C4B430035C747 /* libwebsockets.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0FF9CA8243D87D500D03111 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0FF9CA9243D87D500D03111 /* SDL2_mixer.framework in Frameworks */,
+				C0FF9CAA243D87D500D03111 /* SDL2_image.framework in Frameworks */,
+				C0FF9CAB243D87D500D03111 /* SDL2.framework in Frameworks */,
+				C0FF9CAC243D87D500D03111 /* SDL2_ttf.framework in Frameworks */,
+				C0FF9CAD243D87D500D03111 /* CoreGraphics.framework in Frameworks */,
+				C0FF9CAE243D87D500D03111 /* CoreFoundation.framework in Frameworks */,
+				C0FF9CAF243D87D500D03111 /* libwebsockets.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				C02740742426D8DD008FEDD8 /* rostrum */,
+				C0FF9CB9243D87D500D03111 /* rostrum-travis */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -386,6 +432,23 @@
 			productReference = C02740742426D8DD008FEDD8 /* rostrum */;
 			productType = "com.apple.product-type.tool";
 		};
+		C0FF9CA2243D87D500D03111 /* rostrum-travis */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0FF9CB6243D87D500D03111 /* Build configuration list for PBXNativeTarget "rostrum-travis" */;
+			buildPhases = (
+				C0FF9CA3243D87D500D03111 /* Sources */,
+				C0FF9CA8243D87D500D03111 /* Frameworks */,
+				C0FF9CB0243D87D500D03111 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "rostrum-travis";
+			productName = rostrum;
+			productReference = C0FF9CB9243D87D500D03111 /* rostrum-travis */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -432,6 +495,7 @@
 			projectRoot = "";
 			targets = (
 				C02740732426D8DD008FEDD8 /* rostrum */,
+				C0FF9CA2243D87D500D03111 /* rostrum-travis */,
 			);
 		};
 /* End PBXProject section */
@@ -633,6 +697,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C0FF9CA3243D87D500D03111 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0FF9CA4243D87D500D03111 /* network.cpp in Sources */,
+				C0FF9CA5243D87D500D03111 /* onelua.c in Sources */,
+				C0FF9CA6243D87D500D03111 /* gamelib.cpp in Sources */,
+				C0FF9CA7243D87D500D03111 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -823,6 +898,82 @@
 			};
 			name = Release;
 		};
+		C0FF9CB7243D87D500D03111 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					BUILD_TARGET_MACOS,
+					MAKE_LIB,
+				);
+				HEADER_SEARCH_PATHS = (
+					../../deps/lua,
+					../../src,
+					"../../build/lws-macos/include",
+					../../deps/SDL_image,
+					../../deps/SDL/include,
+					../../deps/SDL_mixer/include,
+					../../deps/SDL_ttf,
+				);
+				LIBRARY_SEARCH_PATHS = "../../build/lws-macos/lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
+				PRODUCT_BUNDLE_IDENTIFIER = games.pollywog.rostrum;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				USER_HEADER_SEARCH_PATHS = (
+					"../../src/**",
+					"../../deps/**",
+				);
+			};
+			name = Debug;
+		};
+		C0FF9CB8243D87D500D03111 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					BUILD_TARGET_MACOS,
+					MAKE_LIB,
+				);
+				HEADER_SEARCH_PATHS = (
+					../../deps/lua,
+					../../src,
+					"../../build/lws-macos/include",
+					../../deps/SDL_image,
+					../../deps/SDL/include,
+					../../deps/SDL_mixer/include,
+					../../deps/SDL_ttf,
+				);
+				LIBRARY_SEARCH_PATHS = "../../build/lws-macos/lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
+				PRODUCT_BUNDLE_IDENTIFIER = games.pollywog.rostrum;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				USER_HEADER_SEARCH_PATHS = (
+					"../../src/**",
+					"../../deps/**",
+				);
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -840,6 +991,15 @@
 			buildConfigurations = (
 				C027407C2426D8DD008FEDD8 /* Debug */,
 				C027407D2426D8DD008FEDD8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0FF9CB6243D87D500D03111 /* Build configuration list for PBXNativeTarget "rostrum-travis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0FF9CB7243D87D500D03111 /* Debug */,
+				C0FF9CB8243D87D500D03111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -22,7 +22,7 @@ jobs:
     osx_image: xcode 11.3
     language: objective-c
     xcode_project: xplat/macos/tadpole.xcodeproj
-    xcode_scheme: rostrum
+    xcode_scheme: rostrum-travis
     xcode_destination: platform=macOS
     install:
       - brew install cmake
