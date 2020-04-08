@@ -50,6 +50,7 @@ jobs:
         - extra-google-m2repository
         - extra-android-m2repository
     install:
+      - sudo apt-key adv --keyserver keysever.ubuntu.com -recv-keys 762E3157
       - sudo apt-get update && sudo apt-get upgrade -y cmake
       - echo y | sdkmanager "ndk-bundle"
       - echo y | sdkmanager "ndk;21.0.6113669"
