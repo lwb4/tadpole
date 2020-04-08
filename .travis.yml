@@ -47,15 +47,20 @@ jobs:
       components:
         - tools
         - platform-tools
-        - android-21
+        - android-26
         - extra-google-m2repository
         - extra-android-m2repository
     install:
       - xplat/android/install-cmake-linux.sh
-      - echo y | sdkmanager "ndk-bundle"
       - echo y | sdkmanager "ndk;21.0.6113669"
       - echo y | sdkmanager "cmake;3.10.2.4988404"
       - export NDK_ROOT="$ANDROID_HOME/ndk/21.0.6113669"
+      - export ANDROID_NDK_HOME="$NDK_ROOT"
+      - export PATH="$PATH:$ANDROID_NDK_HOME"
       - export CMAKE_ROOT="$NDK_ROOT/build/cmake"
+      - cat "$CMAKE_ROOT/android.toolchain.cmake"
+      - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+      - sudo apt-get update
+      - sudo apt-get install libstdc++6-4.7-dev -y
       - ./make.sh android
     script: cd xplat/android && ./build.sh
