@@ -9,8 +9,6 @@ ANDROID_JNI_DIR="$CURRDIR/xplat/android/app/jni"
 ANDROID_WORKING_DIR="$CURRDIR/xplat/android/app/src/main"
 ANDROID_INSTALL="$CURRDIR/build/lws-android"
 
-: "${NDK_ROOT?Environment variable NDK_ROOT not set}"
-
 ######################
 # DEFINE SUBCOMMANDS #
 ######################
@@ -161,6 +159,8 @@ make_lws_android() {
 }
 
 buildAndroid() {
+    [ -z "$NDK_ROOT" ] && echo 'Environment variable NDK_ROOT not set' && exit 1
+
     set +e
     for val in SDL SDL_image SDL_mixer SDL_ttf lua; do
         rm "$ANDROID_JNI_DIR/$val" 2>/dev/null
