@@ -42,7 +42,7 @@ jobs:
 
   - name: Android
     language: android
-    dist: precise
+    dist: trusty
     android:
       components:
         - tools
