@@ -8,6 +8,8 @@ The website for this project where you can find updates and blog posts is at htt
 
 I welcome any and all contributors who are interested in making my vision into a reality. If you'd like to contribute, please create an issue to track your ideas so I know what you plan to work on and we can avoid duplicating effort. If you want to contribute but don't know how or what, please create an issue anyway and I'll give you some ideas!
 
+View the CI pipelines for Tadpole on [Travis](https://travis-ci.org/github/lwb4/tadpole) and [AppVeyor](https://ci.appveyor.com/project/lwb4/tadpole).
+
 ## Installation
 
 On Mac and Linux, follow these steps:

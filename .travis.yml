@@ -4,41 +4,41 @@ dist: bionic
 
 jobs:
   include:
-  # - name: Emscripten
-  #   install:
-  #     - ./make.sh browser
-  #     - source deps/emsdk/emsdk_env.sh
-  #   script: cd xplat/web && ./build.sh noserver
+  - name: Emscripten
+    install:
+      - ./make.sh browser
+      - source deps/emsdk/emsdk_env.sh
+    script: cd xplat/web && ./build.sh noserver
 
-  # - name: Ubuntu
-  #   install:
-  #     - sudo apt-get update
-  #     - sudo apt-get -y install xorg-dev libfreetype6-dev libvorbis-dev libogg-dev libasound2-dev libpulse-dev cmake
-  #     - ./make.sh native
-  #   script: cd xplat/linux && ./build.sh
+  - name: Ubuntu
+    install:
+      - sudo apt-get update
+      - sudo apt-get -y install xorg-dev libfreetype6-dev libvorbis-dev libogg-dev libasound2-dev libpulse-dev cmake
+      - ./make.sh native
+    script: cd xplat/linux && ./build.sh
     
-  # - name: Mac OS
-  #   os: osx
-  #   osx_image: xcode11.3
-  #   language: objective-c
-  #   xcode_project: xplat/macos/tadpole.xcodeproj
-  #   xcode_scheme: rostrum-travis
-  #   xcode_destination: platform=macOS
-  #   install:
-  #     - brew install cmake
-  #     - ./make.sh native
-  #   script: cd xplat/macos && ./build.sh
+  - name: Mac OS
+    os: osx
+    osx_image: xcode11.3
+    language: objective-c
+    xcode_project: xplat/macos/tadpole.xcodeproj
+    xcode_scheme: rostrum-travis
+    xcode_destination: platform=macOS
+    install:
+      - brew install cmake
+      - ./make.sh native
+    script: cd xplat/macos && ./build.sh
 
-  # - name: iOS
-  #   os: osx
-  #   osx_image: xcode11.3
-  #   language: objective-c
-  #   xcode_project: rostrum.xcodeproj
-  #   xcode_scheme: rostrum-travis
-  #   xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
-  #   install:
-  #     - ./make.sh ios
-  #   script: cd xplat/ios && ./build.sh
+  - name: iOS
+    os: osx
+    osx_image: xcode11.3
+    language: objective-c
+    xcode_project: rostrum.xcodeproj
+    xcode_scheme: rostrum-travis
+    xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
+    install:
+      - ./make.sh ios
+    script: cd xplat/ios && ./build.sh
 
   - name: Android
     language: android
