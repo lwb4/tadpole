@@ -205,6 +205,9 @@ buildiOS() {
         -- \
         BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
         -UseModernBuildSystem=YES
+    cmake \
+        --install . \
+        --config Debug-iphonesimulator
 
     MBED_IOS_LIB="$IOS_INSTALL/mbed/library/Debug-iphonesimulator"
 
