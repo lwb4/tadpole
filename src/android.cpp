@@ -5,7 +5,7 @@
 
 static int pfd[2];
 static pthread_t thr;
-static const char *tag = "myapp";
+static const char *tag = "tadpole";
 
 static void *thread_func(void*);
 

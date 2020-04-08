@@ -5,6 +5,11 @@ set -e
 CURRDIR="$(pwd)"
 LINUX_INSTALL="$CURRDIR/build/all-linux"
 MACOS_INSTALL="$CURRDIR/build/lws-macos"
+ANDROID_JNI_DIR="$CURRDIR/xplat/android/app/jni"
+ANDROID_WORKING_DIR="$CURRDIR/xplat/android/app/src/main"
+ANDROID_INSTALL="$CURRDIR/build/lws-android"
+
+: "${NDK_ROOT?Environment variable NDK_ROOT not set}"
 
 ######################
 # DEFINE SUBCOMMANDS #
@@ -113,8 +118,68 @@ buildNative() {
     esac
 }
 
+make_lws_android() {
+    PREFIX="$ANDROID_INSTALL/$1"
+
+    set +e
+    rm -rf \
+        $PREFIX \
+        "$CURRDIR/deps/libwebsockets/CMakeCache.txt" \
+        "$CURRDIR/deps/mbedtls/CMakeCache.txt" \
+        2>/dev/null
+    set -e
+
+    mkdir -p $PREFIX/{lws,mbed}
+    cd $PREFIX
+
+    cd $PREFIX/mbed
+    cmake \
+        -DCMAKE_INSTALL_PREFIX="$PREFIX/mbed" \
+        -DENABLE_TESTING=OFF \
+        -DENABLE_PROGRAMS=OFF \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DANDROID_NDK="$NDK_ROOT" \
+        -DANDROID_ABI="$1" \
+        -DCMAKE_TOOLCHAIN_FILE="$NDK_ROOT/build/cmake/android.toolchain.cmake" \
+        "$CURRDIR/deps/mbedtls"
+    make
+    make install
+
+    cd $PREFIX/lws
+    cmake \
+        -DCMAKE_INSTALL_PREFIX="$PREFIX/lws" \
+        -DLWS_WITH_MBEDTLS=ON \
+        -DLWS_MBEDTLS_LIBRARIES="$PREFIX/mbed/library/libmbedtls.a;$PREFIX/mbed/library/libmbedcrypto.a;$PREFIX/mbed/library/libmbedx509.a" \
+        -DLWS_MBEDTLS_INCLUDE_DIRS="$PREFIX/mbed/include" \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DANDROID_NDK="$NDK_ROOT" \
+        -DANDROID_ABI="$1" \
+        -DCMAKE_TOOLCHAIN_FILE="$NDK_ROOT/build/cmake/android.toolchain.cmake" \
+        "$CURRDIR/deps/libwebsockets"
+    make
+    make install
+}
+
 buildAndroid() {
-    echo "building for android"
+    set +e
+    for val in SDL SDL_image SDL_mixer SDL_ttf lua; do
+        rm "$ANDROID_JNI_DIR/$val" 2>/dev/null
+        ln -s "$CURRDIR/deps/$val" "$ANDROID_JNI_DIR/$val"
+    done
+
+    for dir in fonts images scripts sounds; do
+        rm "$ANDROID_WORKING_DIR/$dir" 2>/dev/null
+        ln -s "$CURRDIR/assets/$dir" "$ANDROID_WORKING_DIR/assets/$dir"
+    done
+
+    rm "$ANDROID_WORKING_DIR/pollywog.games.cer" 2>/dev/null
+    ln -s "$CURRDIR/xplat/pollywog.games.cer" "$ANDROID_WORKING_DIR/assets/pollywog.games.cer"
+    set -e
+
+    make_lws_android "armeabi-v7a"
+    make_lws_android "arm64-v8a"
+    make_lws_android "x86"
+    make_lws_android "x86_64"
 }
 
 buildiOS() {

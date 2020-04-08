@@ -39,15 +39,14 @@ bool IS_RUNNING;
 
 #include <unistd.h>
 
+#ifndef BUILD_TARGET_ANDROID
 #undef main
-int main(int argc, char* args[]) {
+#endif
 
-    char buf[256];
-    getcwd(buf, 256);
-    printf("cwd: %s\n", buf);
+int main(int argc, char* args[]) {
     
 #ifdef BUILD_TARGET_ANDROID
-    start_logger("android-rostrum");
+    start_logger("tadpole");
 #endif
 
     int err;
@@ -172,7 +171,7 @@ void on_network_request(RECV_MESSAGE_TYPE msg) {
 int start_lua_game() {
     SDL_RWops *io = SDL_RWFromFile("scripts/main.lua", "rb");
     if (io == NULL) {
-        fprintf(stderr, "could not load sample lua script");
+        fprintf(stderr, "could not load main lua script");
         return 1;
     }
     size_t size = io->size(io);

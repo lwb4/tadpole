@@ -16,6 +16,13 @@ build/lws-windows
 build/all-linux
 build/lws-macos
 
+build/lws-android/arm64-v8a
+build/lws-android/armeabi-v7a
+build/lws-android/x86
+build/lws-android/x86_64
+
+xplat/android/app/src/main/assets
+
 ##############
 # EMSCRIPTEN #
 ##############
@@ -98,6 +105,7 @@ captures/
 
 # IntelliJ
 *.iml
+.idea
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/gradle.xml

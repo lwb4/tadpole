@@ -144,6 +144,20 @@ void connect_socket(void (*f)()) {
     // eventually ca cert location should be either platform specific and include everything
     // or defined in lua code
     info.client_ssl_ca_filepath = "pollywog.games.cer";
+#elif BUILD_TARGET_ANDROID
+    SDL_RWops *io = SDL_RWFromFile("pollywog.games.cer", "rb");
+    if (io == NULL) {
+        fprintf(stderr, "could not read ca cert from sdl rwops\n");
+        return;
+    }
+    char ca_cert_file[io->size(io)];
+    if (io->read(io, ca_cert_file, sizeof ca_cert_file, 1) <= 0) {
+        fprintf(stderr, "could not read ca cert file\n");
+        return;
+    }
+    io->close(io);
+    info.client_ssl_ca_mem = ca_cert_file;
+    info.client_ssl_ca_mem_len = sizeof ca_cert_file;
 #else
     info.client_ssl_ca_filepath = "../pollywog.games.cer";
 #endif

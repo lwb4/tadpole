@@ -1,20 +1,39 @@
 LOCAL_PATH := $(call my-dir)
+ARCH_DIR := $(LOCAL_PATH)/../../../../../build/lws-android/$(TARGET_ARCH_ABI)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := libwebsockets
-LOCAL_SRC_FILES := $(LOCAL_PATH)/../../../../../deps/lws-android/$(TARGET_ARCH_ABI)/lib/libwebsockets.a
+LOCAL_SRC_FILES := $(ARCH_DIR)/lws/lib/libwebsockets.a
+include $(PREBUILT_STATIC_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libmbedcrypto
+LOCAL_SRC_FILES := $(ARCH_DIR)/mbed/lib/libmbedcrypto.a
+include $(PREBUILT_STATIC_LIBRARY)
+
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libmbedx509
+LOCAL_SRC_FILES := $(ARCH_DIR)/mbed/lib/libmbedx509.a
+include $(PREBUILT_STATIC_LIBRARY)
+
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libmbedtls
+LOCAL_SRC_FILES := $(ARCH_DIR)/mbed/lib/libmbedtls.a
 include $(PREBUILT_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := main
 
-SDL2_PATH 		   := $(LOCAL_PATH)/../SDL2
-SDL2_IMAGE_PATH    := $(LOCAL_PATH)/../SDL2_image
-SDL2_TTF_PATH 	   := $(LOCAL_PATH)/../SDL2_ttf
-SDL2_MIXER_PATH	   := $(LOCAL_PATH)/../SDL2_mixer
+SDL2_PATH 		   := $(LOCAL_PATH)/../SDL
+SDL2_IMAGE_PATH    := $(LOCAL_PATH)/../SDL_image
+SDL2_TTF_PATH 	   := $(LOCAL_PATH)/../SDL_ttf
+SDL2_MIXER_PATH	   := $(LOCAL_PATH)/../SDL_mixer
 LUA_PATH 		   := $(LOCAL_PATH)/../lua
-LWS_PATH		   := $(LOCAL_PATH)/../../../../../deps/libwebsockets/android-build/include
+MBED_PATH		   := $(ARCH_DIR)/mbed/include
+LWS_PATH		   := $(ARCH_DIR)/lws/include
 
 LOCAL_C_INCLUDES := \
 	$(SDL2_PATH)/include \
@@ -22,53 +41,22 @@ LOCAL_C_INCLUDES := \
 	$(SDL2_TTF_PATH) \
 	$(SDL2_MIXER_PATH) \
 	$(LUA_PATH) \
+	$(MBED_PATH) \
 	$(LWS_PATH)
 
 # Add your application source files here...
 LOCAL_SRC_FILES := \
-	../../../../../src/client/main.cpp \
-	../../../../../src/client/gamelib.cpp \
-	../../../../../src/client/network.cpp \
-	../../../../../src/client/android.cpp \
-	$(LUA_PATH)/lapi.c \
-	$(LUA_PATH)/lauxlib.c \
-	$(LUA_PATH)/lbaselib.c \
-	$(LUA_PATH)/lbitlib.c \
-	$(LUA_PATH)/lcode.c \
-	$(LUA_PATH)/lcorolib.c \
-	$(LUA_PATH)/lctype.c \
-	$(LUA_PATH)/ldblib.c \
-	$(LUA_PATH)/ldebug.c \
-	$(LUA_PATH)/ldo.c \
-	$(LUA_PATH)/ldump.c \
-	$(LUA_PATH)/lfunc.c \
-	$(LUA_PATH)/lgc.c \
-	$(LUA_PATH)/linit.c \
-	$(LUA_PATH)/liolib.c \
-	$(LUA_PATH)/llex.c \
-	$(LUA_PATH)/lmathlib.c \
-	$(LUA_PATH)/lmem.c \
-	$(LUA_PATH)/loadlib.c \
-	$(LUA_PATH)/lobject.c \
-	$(LUA_PATH)/lopcodes.c \
-	$(LUA_PATH)/loslib.c \
-	$(LUA_PATH)/lparser.c \
-	$(LUA_PATH)/lstate.c \
-	$(LUA_PATH)/lstring.c \
-	$(LUA_PATH)/lstrlib.c \
-	$(LUA_PATH)/ltable.c \
-	$(LUA_PATH)/ltablib.c \
-	$(LUA_PATH)/ltm.c \
-	$(LUA_PATH)/lundump.c \
-	$(LUA_PATH)/lutf8lib.c \
-	$(LUA_PATH)/lvm.c \
-	$(LUA_PATH)/lzio.c
+	../../../../../src/main.cpp \
+	../../../../../src/gamelib.cpp \
+	../../../../../src/network.cpp \
+	../../../../../src/android.cpp \
+	$(LUA_PATH)/onelua.c
 
-LOCAL_STATIC_LIBRARIES := websockets
+LOCAL_STATIC_LIBRARIES := websockets mbedtls mbedcrypto mbedx509
 LOCAL_SHARED_LIBRARIES := SDL2 SDL2_image SDL2_ttf SDL2_mixer
 
 LOCAL_LDLIBS := -lGLESv1_CM -lGLESv2 -llog -landroid
 
-LOCAL_CFLAGS := -DBUILD_TARGET_ANDROID $(LOCAL_CFLAGS)
+LOCAL_CFLAGS := -D__ANDROID__ -DMAKE_LIB -DBUILD_TARGET_ANDROID $(LOCAL_CFLAGS)
 
 include $(BUILD_SHARED_LIBRARY)
