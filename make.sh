@@ -140,7 +140,7 @@ make_lws_android() {
         -DCMAKE_BUILD_TYPE=Release \
         -DANDROID_NDK="$NDK_ROOT" \
         -DANDROID_ABI="$1" \
-        -DANDROID_PLATFORM="android-26" \
+        -DANDROID_PLATFORM="android-29" \
         -DCMAKE_TOOLCHAIN_FILE="$CMAKE_ROOT/android.toolchain.cmake" \
         "$CURRDIR/deps/mbedtls"
     make
@@ -152,10 +152,12 @@ make_lws_android() {
         -DLWS_WITH_MBEDTLS=ON \
         -DLWS_MBEDTLS_LIBRARIES="$PREFIX/mbed/library/libmbedtls.a;$PREFIX/mbed/library/libmbedcrypto.a;$PREFIX/mbed/library/libmbedx509.a" \
         -DLWS_MBEDTLS_INCLUDE_DIRS="$PREFIX/mbed/include" \
+        -DLWS_WITHOUT_TESTAPPS=ON \
+        -DLWS_WITH_SHARED=OFF \
         -DCMAKE_BUILD_TYPE=Release \
         -DANDROID_NDK="$NDK_ROOT" \
         -DANDROID_ABI="$1" \
-        -DANDROID_PLATFORM="android-26" \
+        -DANDROID_PLATFORM="android-29" \
         -DCMAKE_TOOLCHAIN_FILE="$CMAKE_ROOT/android.toolchain.cmake" \
         "$CURRDIR/deps/libwebsockets"
     make
