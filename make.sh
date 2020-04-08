@@ -164,6 +164,8 @@ buildAndroid() {
     [ -z "$ANDROID_HOME" ] && echo 'Environment variable ANDROID_HOME not set' && exit 1
     [ -z "$NDK_ROOT" ] && echo 'Environment variable NDK_ROOT not set' && exit 1
 
+    cat $CMAKE_ROOT/android.toolchain.cmake
+
     set +e
     for val in SDL SDL_image SDL_mixer SDL_ttf lua; do
         rm "$ANDROID_JNI_DIR/$val" 2>/dev/null
@@ -225,9 +227,6 @@ buildiOS() {
     cmake \
         --build . \
         --target websockets
-    cmake \
-        --install . \
-        --config Debug
 }
 
 buildBrowser() {
