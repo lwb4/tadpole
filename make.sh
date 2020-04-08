@@ -8,6 +8,7 @@ MACOS_INSTALL="$CURRDIR/build/lws-macos"
 ANDROID_JNI_DIR="$CURRDIR/xplat/android/app/jni"
 ANDROID_WORKING_DIR="$CURRDIR/xplat/android/app/src/main"
 ANDROID_INSTALL="$CURRDIR/build/lws-android"
+IOS_INSTALL="$CURRDIR/build/lws-ios"
 
 ######################
 # DEFINE SUBCOMMANDS #
@@ -159,6 +160,7 @@ make_lws_android() {
 }
 
 buildAndroid() {
+    env
     [ -z "$NDK_ROOT" ] && echo 'Environment variable NDK_ROOT not set' && exit 1
 
     set +e
@@ -183,7 +185,29 @@ buildAndroid() {
 }
 
 buildiOS() {
-    echo "building for iOS"
+    rm -rf $IOS_INSTALL 2>/dev/null
+    mkdir -p $IOS_INSTALL/{lws,mbed}
+
+    cd $IOS_INSTALL/mbed
+    cmake \
+        -G Xcode \
+        -DCMAKE_INSTALL_PREFIX="$IOS_INSTALL/mbed" \
+        -DCMAKE_TOOLCHAIN_FILE="$CURRDIR/deps/ios-cmake/ios.toolchain.cmake" \
+        -DPLATFORM=OS64COMBINED \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DENABLE_TESTING=OFF \
+        -DENABLE_PROGRAMS=OFF \
+        "$CURRDIR/deps/mbedtls"
+    xcodebuild build -scheme mbedtls -project "mbed TLS.xcodeproj"
+
+    # cd $IOS_INSTALL/lws
+    # cmake \
+    #     -G Xcode \
+    #     -DCMAKE_INSTALL_PREFIX="$IOS_INSTALL/lws" \
+    #     -DCMAKE_TOOLCHAIN_FILE="$CURRDIR/deps/ios-cmake/ios.toolchain.cmake" \
+    #     -DPLATFORM=OS64COMBINED \
+    #     -DCMAKE_BUILD_TYPE=Release \
+    #     "$CURRDIR/deps/libwebsockets"
 }
 
 buildBrowser() {
