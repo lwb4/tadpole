@@ -47,7 +47,7 @@ jobs:
       components:
         - tools
         - platform-tools
-        - android-26
+        - android-21
         - extra-google-m2repository
         - extra-android-m2repository
     install:
