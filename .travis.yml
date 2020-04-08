@@ -54,6 +54,4 @@ jobs:
       - echo y | sdkmanager "ndk;21.0.6113669"
       - echo y | sdkmanager "cmake;3.10.2.4988404"
       - ./make.sh android
-    before_script:
-      - export NDK_ROOT="$ANDROID_HOME/ndk-bundle"
-    script: cd xplat/android && ./build.sh
+    script: cd xplat/android && NDK_ROOT="$ANDROID_HOME/ndk-bundle" ./build.sh
