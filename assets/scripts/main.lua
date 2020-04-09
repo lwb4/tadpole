@@ -21,7 +21,7 @@ player = {
     x_velocity = 0,
     y_velocity = 0,
     speed = .1,
-    max_velocity = 3,
+    max_velocity = 10,
     icon = icons[runtime.platform],
 }
 

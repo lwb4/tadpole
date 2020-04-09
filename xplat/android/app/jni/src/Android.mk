@@ -44,12 +44,15 @@ LOCAL_C_INCLUDES := \
 	$(MBED_PATH) \
 	$(LWS_PATH)
 
+SRC_DIR := ../../../../../src
+
 # Add your application source files here...
 LOCAL_SRC_FILES := \
-	../../../../../src/main.cpp \
-	../../../../../src/gamelib.cpp \
-	../../../../../src/network.cpp \
-	../../../../../src/android.cpp \
+	$(SRC_DIR)/main.cpp \
+	$(SRC_DIR)/gamelib.cpp \
+	$(SRC_DIR)/network.cpp \
+	$(SRC_DIR)/android.cpp \
+	$(SRC_DIR)/global.cpp \
 	$(LUA_PATH)/onelua.c
 
 LOCAL_STATIC_LIBRARIES := websockets mbedtls mbedcrypto mbedx509
