@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C015A27B243CCF35007E6323 /* onelua.c in Sources */ = {isa = PBXBuildFile; fileRef = C015A27A243CCF35007E6323 /* onelua.c */; };
 		C015A27D243CD07E007E6323 /* pollywog.games.cer in CopyFiles */ = {isa = PBXBuildFile; fileRef = C015A27C243CD07E007E6323 /* pollywog.games.cer */; };
+		C0385066243F7D81007065E4 /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C061182E243EDD67002043AB /* global.cpp */; };
 		C0611849243EDD67002043AB /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C061182E243EDD67002043AB /* global.cpp */; };
 		C096FD982432EF460090BAD2 /* sounds in CopyFiles */ = {isa = PBXBuildFile; fileRef = C096FD942432EF460090BAD2 /* sounds */; };
 		C096FD992432EF460090BAD2 /* scripts in CopyFiles */ = {isa = PBXBuildFile; fileRef = C096FD952432EF460090BAD2 /* scripts */; };
@@ -705,6 +706,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0385066243F7D81007065E4 /* global.cpp in Sources */,
 				C0FF9CA4243D87D500D03111 /* network.cpp in Sources */,
 				C0FF9CA5243D87D500D03111 /* onelua.c in Sources */,
 				C0FF9CA6243D87D500D03111 /* gamelib.cpp in Sources */,

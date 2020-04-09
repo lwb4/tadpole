@@ -17,6 +17,8 @@
 		C026C2C6243DA23B00362C90 /* libmbedtls.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C026C2C3243DA23B00362C90 /* libmbedtls.a */; };
 		C026C2C7243DA23B00362C90 /* libmbedcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C026C2C4243DA23B00362C90 /* libmbedcrypto.a */; };
 		C026C2C8243DA23B00362C90 /* libmbedx509.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C026C2C5243DA23B00362C90 /* libmbedx509.a */; };
+		C03850A4243F7DA8007065E4 /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0385086243F7DA8007065E4 /* global.cpp */; };
+		C03850A5243F7DB5007065E4 /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0385086243F7DA8007065E4 /* global.cpp */; };
 		C05E2B3A242D212C005E7A68 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C067E207242CFA69005C573B /* ImageIO.framework */; };
 		C05E2B63242D21A8005E7A68 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C067E209242CFA9D005C573B /* MobileCoreServices.framework */; };
 		C07BFE27243DA6FF006CB99D /* pollywog.games.cer in Resources */ = {isa = PBXBuildFile; fileRef = C0EA2BD4243DA5EE0044E761 /* pollywog.games.cer */; };
@@ -229,6 +231,7 @@
 		C026C2C3243DA23B00362C90 /* libmbedtls.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmbedtls.a; path = "../../build/lws-ios/mbed/library/Debug-iphonesimulator/libmbedtls.a"; sourceTree = "<group>"; };
 		C026C2C4243DA23B00362C90 /* libmbedcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmbedcrypto.a; path = "../../build/lws-ios/mbed/library/Debug-iphonesimulator/libmbedcrypto.a"; sourceTree = "<group>"; };
 		C026C2C5243DA23B00362C90 /* libmbedx509.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmbedx509.a; path = "../../build/lws-ios/mbed/library/Debug-iphonesimulator/libmbedx509.a"; sourceTree = "<group>"; };
+		C0385086243F7DA8007065E4 /* global.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = global.cpp; path = ../../src/global.cpp; sourceTree = "<group>"; };
 		C05E2B3B242D2135005E7A68 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		C05E2B61242D218C005E7A68 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		C05E2B65242D23BD005E7A68 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../assets; sourceTree = "<group>"; };
@@ -371,6 +374,7 @@
 				C0E89962243D94A1001566CA /* main.cpp */,
 				C0E89961243D94A1001566CA /* network.cpp */,
 				C0E89964243D94A1001566CA /* network.h */,
+				C0385086243F7DA8007065E4 /* global.cpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -735,6 +739,7 @@
 			files = (
 				C0E89966243D94A1001566CA /* network.cpp in Sources */,
 				C0E89969243D94AD001566CA /* onelua.c in Sources */,
+				C03850A4243F7DA8007065E4 /* global.cpp in Sources */,
 				C0E89965243D94A1001566CA /* gamelib.cpp in Sources */,
 				C0E89967243D94A1001566CA /* main.cpp in Sources */,
 			);
@@ -744,6 +749,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C03850A5243F7DB5007065E4 /* global.cpp in Sources */,
 				C07BFE2D243DA6FF006CB99D /* network.cpp in Sources */,
 				C07BFE2E243DA6FF006CB99D /* onelua.c in Sources */,
 				C07BFE2F243DA6FF006CB99D /* gamelib.cpp in Sources */,

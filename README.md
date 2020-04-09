@@ -1,5 +1,9 @@
 # Tadpole Engine
 
+[![Tadpole game framework demo](https://img.youtube.com/vi/Q5Mzl39F9qE/0.jpg)](https://www.youtube.com/watch?v=Q5Mzl39F9qE)
+
+## About
+
 Tadpole Engine is a minimal cross-platform game development framework for making 2D networked games in Lua. It can be used to create multiplayer games on Windows, Mac OS, Linux, iPhone, iPad, Android, and the browser with the same code. Rather than providing a GUI in the way that Unity and Godot do, all games are made purely from Lua code in whatever text editor you prefer. After writing your game in Lua, open the project skeletons under the xplat directory and build your project from there.
 
 My vision is that anyone will be able to create games extremely easily and instantly deploy them everywhere. I have had a great deal of pain with Unity and React Native and other frameworks to do simple things like deployments and cross-building, and have created Tadpole to close this gap. I hope to eventually build some additional infrastructure (either CI/CD, some kind of publishing platform, hosted multiplayer services, or similar) to support this vision, in addition to this open source project.
@@ -54,9 +58,9 @@ To build Tadpole projects, you will need the following pieces of software:
 
 Certain flavors of Linux may need additional packages; for example, on Ubuntu I had to install `xorg-dev` to get rid of the "no video driver available" error from SDL.
 
-## Documentation
+## Learn More
 
-TODO
+For API documentation and information on how Tadpole works internally, look in the `docs` folder.
 
 ## License
 
