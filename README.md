@@ -20,10 +20,11 @@ View the CI pipelines for Tadpole on [Travis](https://travis-ci.org/github/lwb4/
 
 On Mac and Linux, follow these steps:
 
-1. Clone this repo recursively (has to be recursive to get all the git submodules).
-2. Create your game and put it in the `assets` directory.
-3. Use the provided `make.sh` script to build for Mac, iOS, Linux, Android, and Emscripten.
-4. Open up the generated project files, found under the `xplat` directory.
+1. Install the required dependencies: `brew install cmake fswatch` or the Linux equivalent of `brew` for your system
+2. Clone this repo recursively (has to be recursive to get all the git submodules).
+3. Create your game and put it in the `assets` directory.
+4. Use the provided `make.sh` script to build for Mac, iOS, Linux, Android, and Emscripten.
+5. Open up the generated project files, found under the `xplat` directory.
 
 When building for Emscripten, you will likely want to run `source ./make.sh browser` rather than just `./make.sh browser`, because installing EMSDK adds the Emscripten toolchain to your PATH. Without the `source` preceding the command name, changes to your PATH won't persist after the command finishes running.
 
