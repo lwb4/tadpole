@@ -22,7 +22,6 @@ std::vector<Mix_Music*> *MUSIC;
 void one_frame();
 int error_in_sdl(const char *msg);
 
-int error_in_lua(const char *msg);
 int start_lua_game();
 int do_lua_frame();
 
@@ -36,6 +35,7 @@ void continue_main();
 void on_network_request(RECV_MESSAGE_TYPE msg);
 
 bool IS_RUNNING;
+const char* LUA_FRAME_FUNCTION = "_FRAME_FUNCTION";
 
 #include <unistd.h>
 
@@ -46,6 +46,8 @@ bool IS_RUNNING;
 int main(int argc, char* args[]) {
     
 #ifdef BUILD_TARGET_ANDROID
+    // Android pipes stdout and stderr to /dev/null by default
+    // so we need to initialize a special logger in another thread
     start_logger("tadpole");
 #endif
 
@@ -60,23 +62,15 @@ int main(int argc, char* args[]) {
         return err;
     }
 
-    connect_socket(continue_main);
+    create_network_context();
+    start_lua_game();
 
-    return 0;
-}
-
-void continue_main() {
-    if (start_lua_game() != 0) {
-        destroy_libraries();
-        return;
-    }
-
-    set_message_listener(on_network_request);
-    
     start_network_enabled_game_loop(one_frame, 60);
 
-    close_socket();
+    destroy_gamelib();
     destroy_libraries();
+
+    return 0;
 }
 
 void one_frame() {
@@ -86,7 +80,15 @@ void one_frame() {
             IS_RUNNING = false;
         }
     }
-    do_lua_frame();
+    lua_getglobal(LUA_STATE, LUA_FRAME_FUNCTION);
+    if (lua_pcall(LUA_STATE, 0, 0, 0) != 0) {
+        error_in_lua("frame");
+    }
+}
+
+int gamelib_set_frame_function(lua_State *L) {
+    lua_setglobal(L, LUA_FRAME_FUNCTION);
+    return 0;
 }
 
 int initialize_libraries() {
@@ -155,11 +157,6 @@ void destroy_libraries() {
     SDL_Quit();
 }
 
-int error_in_lua(const char *msg) {
-    fprintf(stderr, "%s: %s\n", msg, lua_tostring(LUA_STATE, -1));
-    return 1;
-}
-
 void on_network_request(RECV_MESSAGE_TYPE msg) {
     lua_getglobal(LUA_STATE, "on_network_request");
     lua_pushstring(LUA_STATE, (char*) msg);
@@ -178,19 +175,11 @@ int start_lua_game() {
     char *buf = (char*) malloc(size);
     while (io->read(io, buf, size, 1) > 0);
 
-    if (luaL_loadbuffer(LUA_STATE, buf, size, "sample") || lua_pcall(LUA_STATE, 0, 0, 0)) {
+    if (luaL_loadbuffer(LUA_STATE, buf, size, "main") || lua_pcall(LUA_STATE, 0, 0, 0)) {
         return error_in_lua("load");
     }
 
     SDL_RWclose(io);
     delete buf;
-    return 0;
-}
-
-int do_lua_frame() {
-    lua_getglobal(LUA_STATE, "frame");
-    if (lua_pcall(LUA_STATE, 0, 0, 0) != 0) {
-        return error_in_lua("frame");
-    }
     return 0;
 }

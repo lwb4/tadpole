@@ -235,7 +235,7 @@ buildBrowser() {
     cd deps/emsdk
     ./emsdk install latest
     ./emsdk activate latest
-    source emsdk_env.sh
+    source ./emsdk_env.sh
 
     echo ""
     echo "now go to xplat/web and run ./build.sh to run your program!"

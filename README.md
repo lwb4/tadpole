@@ -19,6 +19,8 @@ On Mac and Linux, follow these steps:
 3. Use the provided `make.sh` script to build for Mac, iOS, Linux, Android, and Emscripten.
 4. Open up the generated project files, found under the `xplat` directory.
 
+When building for Emscripten, you will likely want to run `source ./make.sh browser` rather than just `./make.sh browser`, because installing EMSDK adds the Emscripten toolchain to your PATH. Without the `source` preceding the command name, changes to your PATH won't persist after the command finishes running.
+
 On Windows, follow these steps:
 
 1. Clone this repo recursively.

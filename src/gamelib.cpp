@@ -14,11 +14,8 @@ extern SDL_Rect SCREEN_RECT;
 extern std::vector<TTF_Font*> *FONTS;
 extern std::vector<Mix_Music*> *MUSIC;
 
-void register_lib_function(const char *name, lua_CFunction func) {
-    lua_pushstring(LUA_STATE, name);
-    lua_pushcfunction(LUA_STATE, func);
-    lua_settable(LUA_STATE, -3);
-}
+const char* LUA_ONOPEN_FUNCTION = "_LUA_ONOPEN_FUNCTION";
+const char* LUA_ONMESSAGE_FUNCTION = "_LUA_ONMESSAGE_FUNCTION";
 
 SDL_Color string_to_color(const char *color) {
     if (strcmp(color, "black")) {
@@ -37,6 +34,53 @@ unsigned long register_texture(SDL_Texture *t) {
     texture.rect = rect;
     TEXTURES->push_back(texture);
     return TEXTURES->size() - 1;
+}
+
+void gamelib_lua_onopen() {
+    lua_getglobal(LUA_STATE, LUA_ONOPEN_FUNCTION);
+    if (lua_pcall(LUA_STATE, 0, 0, 0) != 0) {
+        error_in_lua("onopen");
+    }
+}
+
+int gamelib_create_websocket(lua_State *L) {
+    lua_pushstring(L, "host");
+    lua_gettable(L, 1);
+    const char* host = lua_tostring(L, -1);
+    lua_pushstring(L, "path");
+    lua_gettable(L, 1);
+    const char* path = lua_tostring(L, -1);
+    lua_pushstring(L, "port");
+    lua_gettable(L, 1);
+    int port = luaL_checknumber(L, -1);
+    lua_pushstring(L, "secure");
+    lua_gettable(L, 1);
+    bool secure = lua_toboolean(L, -1);
+    lua_pushstring(L, "on_open");
+    lua_gettable(L, 1);
+    lua_setglobal(L, LUA_ONOPEN_FUNCTION);
+    connect_socket(host, path, port, secure, gamelib_lua_onopen);
+    return 0;
+}
+
+void gamelib_lua_onmessage(RECV_MESSAGE_TYPE msg) {
+    lua_getglobal(LUA_STATE, LUA_ONMESSAGE_FUNCTION);
+    lua_pushstring(LUA_STATE, (char*) msg);
+    if (lua_pcall(LUA_STATE, 1, 0, 0) != 0) {
+        error_in_lua("onmessage");
+    }
+}
+
+int gamelib_on_receive_message(lua_State *L) {
+    lua_setglobal(L, LUA_ONMESSAGE_FUNCTION);
+    set_message_listener(gamelib_lua_onmessage);
+    return 0;
+}
+
+int gamelib_send_message(lua_State *L) {
+    const char* msg = lua_tostring(L, 1);
+    send_message_on_socket(msg);
+    return 0;
 }
 
 int gamelib_fill_screen_with_color(lua_State *L) {
@@ -225,6 +269,30 @@ int gamelib_get_screen_dimensions(lua_State *L) {
     return 2;
 }
 
+int gamelib_require(lua_State *L) {
+    const char* filename = lua_tostring(L, 1);
+    SDL_RWops *io = SDL_RWFromFile(filename, "rb");
+    if (io == NULL) {
+        lua_pushstring(L, "could not load file to require");
+        lua_error(L);
+    }
+    size_t size = io->size(io);
+    char buf[size];
+    while (io->read(io, buf, size, 1) > 0);
+    if (luaL_loadbuffer(L, buf, size, filename) || lua_pcall(L, 0, 1, 0)) {
+        lua_pushstring(L, "could not run file to require");
+        lua_error(L);
+    }
+    SDL_RWclose(io);
+    return 1;
+}
+
+void register_lib_function(const char *name, lua_CFunction func) {
+    lua_pushstring(LUA_STATE, name);
+    lua_pushcfunction(LUA_STATE, func);
+    lua_settable(LUA_STATE, -3);
+}
+
 int initialize_gamelib() {
     LUA_STATE = luaL_newstate();
     if (!LUA_STATE) {
@@ -252,6 +320,19 @@ int initialize_gamelib() {
     register_lib_function("play_music", gamelib_play_music);
     register_lib_function("send_network_request", gamelib_send_network_request);
     register_lib_function("get_screen_dimensions", gamelib_get_screen_dimensions);
+    register_lib_function("set_frame_function", gamelib_set_frame_function);
+    register_lib_function("create_websocket", gamelib_create_websocket);
+    register_lib_function("on_receive_message", gamelib_on_receive_message);
+    register_lib_function("send_message", gamelib_send_message);
+    register_lib_function("require", gamelib_require);
+    
+    lua_pushstring(LUA_STATE, "SCREEN_WIDTH");
+    lua_pushnumber(LUA_STATE, SCREEN_RECT.w);
+    lua_settable(LUA_STATE, -3);
+    
+    lua_pushstring(LUA_STATE, "SCREEN_HEIGHT");
+    lua_pushnumber(LUA_STATE, SCREEN_RECT.h);
+    lua_settable(LUA_STATE, -3);
 
     lua_setglobal(LUA_STATE, "lib");
     

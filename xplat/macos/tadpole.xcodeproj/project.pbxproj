@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C015A27B243CCF35007E6323 /* onelua.c in Sources */ = {isa = PBXBuildFile; fileRef = C015A27A243CCF35007E6323 /* onelua.c */; };
 		C015A27D243CD07E007E6323 /* pollywog.games.cer in CopyFiles */ = {isa = PBXBuildFile; fileRef = C015A27C243CD07E007E6323 /* pollywog.games.cer */; };
+		C0611849243EDD67002043AB /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C061182E243EDD67002043AB /* global.cpp */; };
 		C096FD982432EF460090BAD2 /* sounds in CopyFiles */ = {isa = PBXBuildFile; fileRef = C096FD942432EF460090BAD2 /* sounds */; };
 		C096FD992432EF460090BAD2 /* scripts in CopyFiles */ = {isa = PBXBuildFile; fileRef = C096FD952432EF460090BAD2 /* scripts */; };
 		C096FD9B2432EF460090BAD2 /* fonts in CopyFiles */ = {isa = PBXBuildFile; fileRef = C096FD972432EF460090BAD2 /* fonts */; };
@@ -261,6 +262,7 @@
 		C015A27A243CCF35007E6323 /* onelua.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = onelua.c; path = ../../deps/lua/onelua.c; sourceTree = "<group>"; };
 		C015A27C243CD07E007E6323 /* pollywog.games.cer */ = {isa = PBXFileReference; lastKnownFileType = text; name = pollywog.games.cer; path = ../pollywog.games.cer; sourceTree = "<group>"; };
 		C02740742426D8DD008FEDD8 /* rostrum */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rostrum; sourceTree = BUILT_PRODUCTS_DIR; };
+		C061182E243EDD67002043AB /* global.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = global.cpp; path = ../../src/global.cpp; sourceTree = "<group>"; };
 		C096FD942432EF460090BAD2 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sounds; path = ../../assets/sounds; sourceTree = "<group>"; };
 		C096FD952432EF460090BAD2 /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = scripts; path = ../../assets/scripts; sourceTree = "<group>"; };
 		C096FD972432EF460090BAD2 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = ../../assets/fonts; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 		C027406B2426D8DD008FEDD8 = {
 			isa = PBXGroup;
 			children = (
+				C061182E243EDD67002043AB /* global.cpp */,
 				C015A27C243CD07E007E6323 /* pollywog.games.cer */,
 				C015A27A243CCF35007E6323 /* onelua.c */,
 				C0E668D1243C4FDB0035C747 /* gamelib.cpp */,
@@ -692,6 +695,7 @@
 			files = (
 				C0E668D2243C4FDB0035C747 /* network.cpp in Sources */,
 				C015A27B243CCF35007E6323 /* onelua.c in Sources */,
+				C0611849243EDD67002043AB /* global.cpp in Sources */,
 				C0E668D4243C4FDB0035C747 /* gamelib.cpp in Sources */,
 				C0E668D3243C4FDB0035C747 /* main.cpp in Sources */,
 			);

@@ -2,6 +2,7 @@
 #include "network.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <vector>
 
 #ifdef BUILD_TARGET_ANDROID
 #include <pthread.h>
@@ -9,9 +10,9 @@
 
 extern bool IS_RUNNING;
 
-static int SERVER_PORT = 8080;
-static const char *SERVER_ADDRESS = "pollywog.games";
-static const char *SERVER_PATH = "/";
+const char *SERVER_ADDRESS, *SERVER_PATH;
+int SERVER_PORT;
+bool SERVER_SECURE;
 
 #ifdef BUILD_TARGET_BROWSER
 
@@ -26,6 +27,8 @@ static const char *SERVER_PATH = "/";
 EMSCRIPTEN_WEBSOCKET_T ws;
 void (*ONOPEN_FUNCTION)() = NULL;
 void (*ONMESSAGE_FUNCTION)(RECV_MESSAGE_TYPE) = NULL;
+void (*FRAME_FUNCTION)() = NULL;
+SEND_MESSAGE_TYPE QUEUED_MESSAGE = NULL;
 
 int onmessage(int eventType, const EmscriptenWebSocketMessageEvent *websocketEvent, void *userData) {
     if (ONMESSAGE_FUNCTION) {
@@ -43,7 +46,16 @@ int onopen(int eventType, const EmscriptenWebSocketOpenEvent *websocketEvent, vo
 }
 
 void send_message_on_socket(SEND_MESSAGE_TYPE msg) {
-    emscripten_websocket_send_utf8_text(ws, msg);
+    unsigned short ready_state;
+    emscripten_websocket_get_ready_state(ws, &ready_state);
+    if (ready_state == 0) {
+        QUEUED_MESSAGE = msg;
+    } else if (ready_state == 1) {
+        emscripten_websocket_send_utf8_text(ws, msg);
+        QUEUED_MESSAGE = NULL;
+    } else {
+        fprintf(stderr, "trying to send msg (%s) on a closed socket (ready state: %d)", msg, ready_state);
+    }
 }
 
 void set_message_listener(void (*f)(RECV_MESSAGE_TYPE)) {
@@ -55,10 +67,17 @@ void close_socket() {
     emscripten_websocket_delete(ws);
 }
 
-void connect_socket(void (*f)()) {
+void connect_socket(
+        const char* host,
+        const char* path,
+        int port,
+        bool secure,
+        void (*on_open)())
+{
     struct EmscriptenWebSocketCreateAttributes attr;
+    const char* protocol = secure ? "wss" : "ws";
     char url[256];
-    snprintf(url, 256, "wss://%s:%d%s", SERVER_ADDRESS, SERVER_PORT, SERVER_PATH);
+    snprintf(url, 256, "%s://%s:%d%s", protocol, host, port, path);
     attr.url = url;
     attr.protocols = NULL;
     attr.createOnMainThread = 1;
@@ -66,14 +85,28 @@ void connect_socket(void (*f)()) {
     if (ws < 0) {
         fprintf(stderr, "could not create websocket\n");
     }
-    ONOPEN_FUNCTION = f;
+    ONOPEN_FUNCTION = on_open;
     emscripten_websocket_set_onopen_callback(ws, NULL, onopen);
+}
+
+void create_network_context() {
+    // nothing to be done
+}
+
+void emscripten_one_frame() {
+    if (FRAME_FUNCTION) {
+        FRAME_FUNCTION();
+    }
+    if (QUEUED_MESSAGE) {
+        send_message_on_socket(QUEUED_MESSAGE);
+    }
 }
 
 void start_network_enabled_game_loop(void (*f)(), int target_fps) {
     // A basic main loop to prevent blocking
     // Emscripten can't handle loops. See https://emscripten.org/docs/porting/emscripten-runtime-environment.html#browser-main-loop
-    emscripten_set_main_loop(f, target_fps, 1);
+    FRAME_FUNCTION = f;
+    emscripten_set_main_loop(emscripten_one_frame, target_fps, 1);
 }
 
 #else
@@ -103,6 +136,7 @@ uint8_t MESSAGE[LWS_PRE + 1024];
 int MESSAGE_LENGTH = 0; // a message length of zero indicates that no message is queued
 
 void (*FRAME_FUNCTION)() = NULL;
+void (*ONOPEN_FUNCTION)() = NULL;
 void (*MESSAGE_LISTENER)(RECV_MESSAGE_TYPE) = NULL;
 
 static const struct lws_protocols PROTOCOLS[] = {
@@ -124,13 +158,15 @@ static void connect_client(lws_sorted_usec_list_t *sul) {
     i.path = SERVER_PATH;
     i.host = i.address;
     i.origin = i.address;
-    i.ssl_connection = LCCSCF_USE_SSL;
+    if (SERVER_SECURE) {
+        i.ssl_connection = LCCSCF_USE_SSL;
+    }
 
     lws_client_connect_via_info(&i);
 }
 
 
-void connect_socket(void (*f)()) {
+void create_network_context() {
     struct lws_context_creation_info info;
 
     memset(&info, 0, sizeof(info));
@@ -169,8 +205,6 @@ void connect_socket(void (*f)()) {
         fprintf(stderr, "lws init failed\n");
         return;
     }
-
-    f();
 }
 
 static void one_frame(lws_sorted_usec_list_t *sul) {
@@ -187,13 +221,33 @@ void schedule_next_frame() {
     lws_sul_schedule(LWS_CONTEXT, 0, &SUL, one_frame, LWS_USEC_PER_SEC / 60);
 }
 
+void connect_socket(
+        const char* host,
+        const char* path,
+        int port,
+        bool secure,
+        void (*on_open)())
+{
+    SERVER_ADDRESS = host;
+    SERVER_PATH = path;
+    SERVER_PORT = port;
+    SERVER_SECURE = secure;
+    ONOPEN_FUNCTION = on_open;
+    lws_sul_schedule(LWS_CONTEXT, 0, &SUL, connect_client, 1);
+}
+
 // we can't just use an infinite loop because lws_service can block
 // instead we just let it do its thing and schedule frames when we need them
 // this has the side effect of making FPS slightly easier to calculate
 void start_network_enabled_game_loop(void (*f)(), int target_fps) {
     FRAME_FUNCTION = f;
     IS_RUNNING = true;
-    lws_sul_schedule(LWS_CONTEXT, 0, &SUL, connect_client, 1);
+    
+    if (!SERVER_ADDRESS) {
+        // if this game doesn't use sockets, schedule the first frame now
+        // otherwise, schedule the first frame after the connection has been established
+        schedule_next_frame();
+    }
 
     int n = 0;
     while (n >= 0 && IS_RUNNING) {
@@ -233,6 +287,7 @@ static int service_callback(struct lws *wsi, enum lws_callback_reasons reason, v
     case LWS_CALLBACK_CLIENT_ESTABLISHED:
         lws_callback_on_writable(wsi);
         schedule_next_frame();
+        ONOPEN_FUNCTION();
         break;
 
     case LWS_CALLBACK_CLIENT_CLOSED:

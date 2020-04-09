@@ -1,5 +1,5 @@
-#ifndef include_sdl_hpp
-#define include_sdl_hpp
+#ifndef global_h
+#define global_h
 
 #if defined(BUILD_TARGET_LINUX)
 #include <SDL2/SDL.h>
@@ -34,5 +34,9 @@ struct gamelib_texture {
     SDL_Texture *texture;
     SDL_Rect rect;
 };
+
+int gamelib_set_frame_function(lua_State *L);
+int gamelib_start_game_loop(lua_State *L);
+int error_in_lua(const char *msg);
 
 #endif
