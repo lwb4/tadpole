@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 set -e
+
+if [ -z $(type -t $function) ]; then
+    source ../../deps/emsdk/emsdk_env.sh
+fi
+
+echo "Building ..."
+
 emcc ../../src/*.cpp \
     $(ls ../../deps/lua/*.c | grep -v 'lua.c') \
     -D BUILD_TARGET_BROWSER \
