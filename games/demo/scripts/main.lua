@@ -1,7 +1,18 @@
--- Basic platformer
+-- This game is a simple proof of concept for the Tadpole framework
+
+json = lib.require("scripts/json.lua")
 
 icons = {
-    guy = lib.load_image("images/guy.png"),
+    windows = lib.load_image("images/icon-windows.png"),
+    mac = lib.load_image("images/icon-macos.png"),
+    linux = lib.load_image("images/icon-linux.png"),
+    browser = lib.load_image("images/icon-browser.png"),
+    ios = lib.load_image("images/icon-ios.png"),
+    android = lib.load_image("images/icon-android.png"),
+}
+
+runtime = {
+    platform = lib.get_platform(),
 }
 
 player = {
@@ -11,14 +22,18 @@ player = {
     y_velocity = 0,
     speed = .1,
     max_velocity = 10,
+    icon = icons[runtime.platform],
 }
 
 world = {
     friction = .99,
-    width = 640,
-    height = 480,
+    width = lib.SCREEN_WIDTH,
+    height = lib.SCREEN_HEIGHT,
     enemies = {},
 }
+
+song = lib.load_music("sounds/rick_astley.ogg")
+lib.play_music(song, -1)
 
 -- this function runs every frame
 function update()
@@ -57,10 +72,10 @@ function update()
     end
 
     -- clear the screen
-    lib.fill_screen_with_color(0, 0, 0)
+    lib.fill_screen_with_color(255, 255, 255)
 
     -- draw the player
-    lib.draw_texture(player.x, player.y, guy)
+    lib.draw_texture(player.x, player.y, player.icon)
 
     -- draw the enemies
     for platform, position in pairs(world.enemies) do
@@ -80,3 +95,17 @@ end
 
 -- tell tadpole to call update() every frame
 lib.set_frame_function(update)
+
+-- parse the server's message as JSON
+-- it contains our enemies' positions, which we store for later use
+lib.on_receive_message(function (msg)
+    world.enemies = json.decode(msg)
+end)
+
+-- create the websocket
+lib.create_websocket({
+    host = "pollywog.games",
+    path = "/",
+    port = 8080,
+    secure = true,
+})
